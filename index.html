@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>أزرار توهج حمراء</title>
+<style>
+  html, body {
+    margin: 0; padding: 0; height: 100%;
+    background-color: #000; /* الخلفية سوداء */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: Arial, sans-serif;
+  }
+  .buttons-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  a.btn {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background-color: #111; /* خلفية الزر أسود داكن */
+    color: #fff;
+    padding: 15px 30px;
+    font-size: 20px;
+    font-weight: bold;
+    text-decoration: none;
+    border-radius: 10px;
+    box-shadow: 0 0 8px rgba(255, 0, 0, 0.8);
+    transition: box-shadow 0.3s ease;
+  }
+  a.btn:hover {
+    box-shadow: 0 0 20px 6px rgba(255, 0, 0, 1);
+  }
+  a.btn::before {
+    content: '';
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 115%;
+    height: 115%;
+    background: rgba(255, 0, 0, 0.5);
+    border-radius: 10px;
+    filter: blur(10px);
+    opacity: 0.6;
+    transition: opacity 0.3s ease;
+    z-index: -1;
+  }
+  a.btn:hover::before {
+    opacity: 1;
+  }
+  .icon {
+    font-size: 24px;
+  }
+</style>
+<!-- أيقونات FontAwesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+</head>
+<body>
+
+<div class="buttons-container">
+  <a href="https://t.me/xbet_mux" class="btn" target="_blank" rel="noopener noreferrer">
+    <i class="fab fa-telegram icon"></i> قناة تيليجرام
+  </a>
+  <a href="https://play.gooqle.co/store/apps/details?id=xparibet&promo=evo3&hl=en&gl=US" class="btn" target="_blank" rel="noopener noreferrer">
+    تحميل تطبيق XpariBet
+  </a>
+  <a href="https://t.me/xbet_Mux/418" class="btn" target="_blank" rel="noopener noreferrer">
+    تحميل PariXploit
+  </a>
+</div>
+
+</body>
+</html>
