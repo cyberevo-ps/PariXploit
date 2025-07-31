@@ -7,7 +7,6 @@
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap');
 
-    /* خط عربي مخصص */
     @font-face {
       font-family: 'ArabicFont';
       src: url('arabic.ttf') format('truetype');
@@ -24,17 +23,18 @@
       display: flex;
       flex-direction: column;
       align-items: center;
+      min-height: 100vh;
     }
 
-    /* البار العلوي */
     .top-bar {
       width: 100%;
       background-color: #111;
-      padding: 15px 25px;
+      padding: 15px 40px; /* زدنا البادينج عاليسار */
       display: flex;
       align-items: center;
       gap: 15px;
       box-shadow: 0 2px 8px rgba(255, 0, 0, 0.4);
+      box-sizing: border-box;
     }
 
     .wolf-icon {
@@ -45,6 +45,7 @@
       background-position: center;
       border-radius: 50%;
       flex-shrink: 0;
+      margin-left: 10px; /* مسافة اضافية عن حافة الشاشة */
     }
 
     .title {
@@ -54,7 +55,6 @@
       letter-spacing: 1px;
     }
 
-    /* الحاوية العامة */
     .container {
       width: 90%;
       max-width: 450px;
@@ -62,9 +62,11 @@
       display: flex;
       flex-direction: column;
       gap: 25px;
+      align-items: center; /* وسطنا كل المحتوى داخل الحاوية */
+      margin-left: auto;
+      margin-right: auto;
     }
 
-    /* الأزرار */
     .btn {
       background-color: #111;
       color: #fff;
@@ -79,6 +81,8 @@
       align-items: center;
       border: none;
       position: relative;
+      width: 100%; /* عرض الزر كامل داخل الحاوية */
+      max-width: 320px; /* تحديد أقصى عرض */
     }
 
     .btn:focus { outline: none; }
@@ -101,40 +105,52 @@
       color: #bbb;
       line-height: 1.4;
     }
+
+    /* نص إضافي تحت الأزرار */
+    .extra-text {
+      margin-top: 40px;
+      max-width: 450px;
+      color: #888;
+      font-size: 16px;
+      line-height: 1.5;
+      text-align: center;
+      font-family: 'ArabicFont', sans-serif;
+    }
   </style>
 </head>
 <body>
 
-  <!-- البار العلوي -->
   <div class="top-bar">
     <div class="wolf-icon"></div>
     <div class="title">Muxbet</div>
   </div>
 
-  <!-- الأزرار -->
   <div class="container">
 
-    <!-- زر تيليجرام -->
     <a href="https://t.me/xbet_mux" class="btn" target="_blank">
       <img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg" alt="Telegram" />
       <div class="label">قناة تيليجرام</div>
       <div class="desc">تابع آخر التحديثات والنتائج من المستخدمين.</div>
     </a>
 
-    <!-- زر XpariBet -->
     <a href="https://play.gooqle.co/store/apps/details?id=xparibet&promo=evo3&hl=en&gl=US" class="btn" target="_blank">
       <img src="pari.png" alt="XpariBet" />
       <div class="label">تحميل تطبيق XpariBet</div>
       <div class="desc">التطبيق الأساسي للعب – حمّله لتبدأ.</div>
     </a>
 
-    <!-- زر PariXploit -->
     <a href="https://t.me/xbet_Mux/418" class="btn" target="_blank">
       <img src="apk.png" alt="PariXploit" />
       <div class="label">تحميل PariXploit</div>
       <div class="desc">السكربت المتكامل لتحليل وتحقيق نتائج.</div>
     </a>
 
+  </div>
+
+  <div class="extra-text">
+    🎯 أداة ذكية تساعدك على تحليل الألعاب وتحقيق أفضل النتائج بشكل يومي.<br />
+    🔥 استخدم أحدث التقنيات مع PariXploit لتحليل التفاحات بدقة واحتراف!<br />
+    ⚡ لا تنس ايداع 3 دولار كي يعمل معك!
   </div>
 
 </body>
