@@ -11,9 +11,10 @@
       height: 100%;
       background-color: #000;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: #fff;
     }
 
-    /* الشريط العلوي */
+    /* ✅ الشريط العلوي */
     .top-bar {
       background-color: #111;
       color: #fff;
@@ -25,45 +26,71 @@
     }
 
     .top-bar img {
-      height: 50px;
-      width: 50px;
-      object-fit: contain;
+      height: 60px;
+      width: 60px;
+      object-fit: cover;
+      border-radius: 50%;
     }
 
     .top-bar .title {
-      font-size: 28px;
+      font-size: 30px;
       font-weight: bold;
       font-family: 'Orbitron', sans-serif;
       letter-spacing: 1px;
+    }
+
+    .subtitle {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      font-size: 20px;
+      margin: 20px 0 30px 0;
+      color: #fff;
+    }
+
+    .subtitle img {
+      width: 30px;
+      height: 30px;
+      object-fit: contain;
     }
 
     .container {
       display: flex;
       justify-content: center;
       align-items: center;
-      padding-top: 80px;
       flex-direction: column;
       gap: 25px;
+      padding: 0 20px;
     }
 
     a.btn {
       position: relative;
       display: flex;
       align-items: center;
-      gap: 12px;
+      justify-content: center;
+      gap: 15px;
+      width: 90%;
+      max-width: 400px;
       background-color: #111;
       color: #fff;
-      padding: 15px 30px;
+      padding: 20px;
       font-size: 20px;
       font-weight: bold;
       text-decoration: none;
-      border-radius: 10px;
+      border-radius: 12px;
       box-shadow: 0 0 8px 2px rgba(255, 0, 0, 0.7);
-      transition: box-shadow 0.3s ease;
+      transition: all 0.3s ease;
+      border: none;
+      outline: none;
     }
 
-    a.btn:hover {
-      box-shadow: 0 0 20px 6px rgba(255, 0, 0, 1);
+    a.btn:focus {
+      outline: none;
+    }
+
+    a.btn:active {
+      outline: none;
     }
 
     a.btn::before {
@@ -74,7 +101,7 @@
       width: 115%;
       height: 115%;
       background: rgba(255, 0, 0, 0.3);
-      border-radius: 10px;
+      border-radius: 12px;
       filter: blur(10px);
       opacity: 0.6;
       transition: opacity 0.3s ease;
@@ -86,12 +113,18 @@
     }
 
     .icon-img {
-      width: 30px;
-      height: 30px;
+      width: 32px;
+      height: 32px;
       object-fit: contain;
+      filter: none;
     }
 
-    /* خط مميز للشعار */
+    /* ✅ تأثير الضغط على زر */
+    a.btn.active {
+      transform: scale(1.1);
+      box-shadow: 0 0 20px 8px rgba(255, 0, 0, 1);
+    }
+
     @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap');
   </style>
 </head>
@@ -99,30 +132,44 @@
 
   <!-- ✅ الشريط العلوي -->
   <div class="top-bar">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg" alt="Muxbet Logo">
+    <img src="https://i.imgur.com/6XZUjGo.png" alt="Wolf" />
     <div class="title">Muxbet</div>
+  </div>
+
+  <!-- ✅ النص تحت الشريط العلوي -->
+  <div class="subtitle">
+    <span>طريقك لربح الأموال</span>
+    <img src="https://cdn-icons-png.flaticon.com/512/2331/2331944.png" alt="Money" />
   </div>
 
   <!-- ✅ الأزرار -->
   <div class="container">
-    <!-- زر 1 - Telegram -->
     <a href="https://t.me/xbet_mux" class="btn" target="_blank">
       <img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg" class="icon-img" alt="Telegram" />
       قناة تيليجرام
     </a>
 
-    <!-- زر 2 - XpariBet (صورة بديلة لشعار) -->
     <a href="https://play.gooqle.co/store/apps/details?id=xparibet&promo=evo3&hl=en&gl=US" class="btn" target="_blank">
-      <img src="https://i.imgur.com/sduyWD8.png" class="icon-img" alt="XpariBet" />
+      <img src="https://cdn-icons-png.flaticon.com/512/888/888857.png" class="icon-img" alt="Android" />
       تحميل تطبيق XpariBet
     </a>
 
-    <!-- زر 3 - تفاحة كرتونية -->
     <a href="https://t.me/xbet_Mux/418" class="btn" target="_blank">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg" class="icon-img" alt="Apple Cartoon" />
+      <img src="https://cdn-icons-png.flaticon.com/512/888/888857.png" class="icon-img" alt="Android" />
       تحميل PariXploit
     </a>
   </div>
+
+  <!-- ✅ سكربت تفعيل أنيميشن عند الضغط -->
+  <script>
+    const buttons = document.querySelectorAll('.btn');
+    buttons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        buttons.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+      });
+    });
+  </script>
 
 </body>
 </html>
