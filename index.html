@@ -8,16 +8,13 @@
     html, body {
       margin: 0;
       padding: 0;
-      height: 100%;
       background-color: #000;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       color: #fff;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     }
 
-    /* ✅ الشريط العلوي */
     .top-bar {
       background-color: #111;
-      color: #fff;
       padding: 15px 25px;
       display: flex;
       align-items: center;
@@ -28,14 +25,14 @@
     .wolf-icon {
       width: 60px;
       height: 60px;
-      background-image: url('image.jpeg'); /* ← صورة الذئب */
+      background-image: url('image.jpeg');
       background-size: cover;
       background-position: center;
       border-radius: 50%;
       flex-shrink: 0;
     }
 
-    .top-bar .title {
+    .title {
       font-size: 30px;
       font-weight: bold;
       font-family: 'Orbitron', sans-serif;
@@ -49,10 +46,8 @@
       gap: 10px;
       font-size: 20px;
       margin: 20px 0 30px 0;
-      color: #fff;
     }
 
-    /* ✅ أيقونة القناع */
     .mask-icon {
       width: 34px;
       height: 34px;
@@ -72,31 +67,28 @@
       border-radius: 50%;
     }
 
-    .mask-icon::before {
-      left: 8px;
-    }
-
-    .mask-icon::after {
-      right: 8px;
-    }
+    .mask-icon::before { left: 8px; }
+    .mask-icon::after { right: 8px; }
 
     .container {
       display: flex;
-      justify-content: center;
-      align-items: center;
       flex-direction: column;
-      gap: 25px;
-      padding: 0 20px;
+      align-items: center;
+      gap: 30px;
+      padding-bottom: 60px;
+    }
+
+    .btn-block {
+      text-align: center;
+      width: 90%;
+      max-width: 420px;
     }
 
     a.btn {
-      position: relative;
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 15px;
-      width: 90%;
-      max-width: 400px;
       background-color: #111;
       color: #fff;
       padding: 20px;
@@ -109,15 +101,12 @@
       border: none;
       outline: none;
       user-select: none;
+      width: 100%;
+      position: relative;
     }
 
-    a.btn:focus {
-      outline: none;
-    }
-
-    a.btn:active {
-      transform: scale(1.07);
-    }
+    a.btn:focus { outline: none; }
+    a.btn:active { transform: scale(1.07); }
 
     a.btn::before {
       content: '';
@@ -134,15 +123,19 @@
       z-index: -1;
     }
 
-    a.btn:hover::before {
-      opacity: 1;
-    }
+    a.btn:hover::before { opacity: 1; }
 
     .icon-img {
       width: 32px;
       height: 32px;
       object-fit: contain;
-      filter: none;
+    }
+
+    .description {
+      color: #bbb;
+      font-size: 15px;
+      margin-top: 8px;
+      line-height: 1.6;
     }
 
     @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap');
@@ -162,22 +155,36 @@
     <div class="mask-icon"></div>
   </div>
 
-  <!-- ✅ الأزرار -->
+  <!-- ✅ الأزرار مع الأوصاف -->
   <div class="container">
-    <a href="https://t.me/xbet_mux" class="btn" target="_blank">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg" class="icon-img" alt="Telegram" />
-      قناة تيليجرام
-    </a>
 
-    <a href="https://play.gooqle.co/store/apps/details?id=xparibet&promo=evo3&hl=en&gl=US" class="btn" target="_blank">
-      <img src="pari.png" class="icon-img" alt="Xpari" />
-      تحميل تطبيق XpariBet
-    </a>
+    <!-- زر 1 -->
+    <div class="btn-block">
+      <a href="https://t.me/xbet_mux" class="btn" target="_blank">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg" class="icon-img" />
+        قناة تيليجرام
+      </a>
+      <div class="description">تابع آخر التحديثات والنتائج من المستخدمين.</div>
+    </div>
 
-    <a href="https://t.me/xbet_Mux/418" class="btn" target="_blank">
-      <img src="apk.png" class="icon-img" alt="APK" />
-      تحميل PariXploit
-    </a>
+    <!-- زر 2 -->
+    <div class="btn-block">
+      <a href="https://play.gooqle.co/store/apps/details?id=xparibet&promo=evo3&hl=en&gl=US" class="btn" target="_blank">
+        <img src="pari.png" class="icon-img" alt="Xpari" />
+        تحميل تطبيق XpariBet
+      </a>
+      <div class="description">التطبيق الأساسي للعب – حمّله لتبدأ.</div>
+    </div>
+
+    <!-- زر 3 -->
+    <div class="btn-block">
+      <a href="https://t.me/xbet_Mux/418" class="btn" target="_blank">
+        <img src="apk.png" class="icon-img" alt="APK" />
+        تحميل PariXploit
+      </a>
+      <div class="description">السكربت المتكامل لتحليل وتحقيق نتائج.</div>
+    </div>
+
   </div>
 
 </body>
