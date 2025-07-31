@@ -15,14 +15,19 @@
       font-family: 'ArabicFont', sans-serif;
       color: #ccc;
       text-align: center;
+      overflow-x: hidden;
     }
     header {
       display: flex;
       align-items: center;
-      background: #1a1a1a;
+      background: #000; /* نفس لون الخلفية */
       padding: 15px 25px;
       gap: 15px;
       justify-content: flex-start;
+      border-bottom: 2px solid #ff0000; /* خط أحمر تحت */
+      position: sticky;
+      top: 0;
+      z-index: 100;
     }
     header img {
       width: 60px;
@@ -35,6 +40,7 @@
       color: #f0f0f0;
       margin: 0;
       font-weight: 700;
+      user-select: none;
     }
     .subtitle {
       color: #888;
@@ -44,6 +50,7 @@
       justify-content: center;
       align-items: center;
       gap: 8px;
+      user-select: none;
     }
     .subtitle svg {
       width: 24px;
@@ -57,6 +64,7 @@
       gap: 25px;
       max-width: 360px;
       margin: 0 auto 40px;
+      min-height: calc(100vh - 130px);
     }
     .button {
       background: #111;
@@ -66,7 +74,7 @@
       font-size: 1.1rem;
       font-weight: 600;
       border-radius: 10px;
-      width: 320px;
+      width: 224px; /* 320px * 0.7 = 224px */
       display: flex;
       align-items: center;
       gap: 15px;
@@ -77,6 +85,7 @@
       text-decoration: none;
       justify-content: center;
       flex-direction: column;
+      user-select: none;
     }
     .button img {
       width: 32px;
@@ -96,20 +105,23 @@
       font-size: 1.1rem;
       font-weight: 700;
       margin-bottom: 6px;
+      user-select: none;
     }
     .button-desc {
       font-size: 0.8rem;
       color: #888;
       line-height: 1.2;
-      max-width: 280px;
+      max-width: 200px;
+      user-select: none;
     }
     footer {
       max-width: 360px;
       margin: 0 auto 30px;
       color: #777;
-      font-size: 0.85rem;
+      font-size: 0.7rem;
       line-height: 1.3;
       text-align: center;
+      user-select: none;
     }
   </style>
 </head>
