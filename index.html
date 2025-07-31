@@ -14,7 +14,6 @@
       color: #fff;
     }
 
-    /* ✅ الشريط العلوي */
     .top-bar {
       background-color: #111;
       color: #fff;
@@ -25,10 +24,12 @@
       box-shadow: 0 2px 8px rgba(255, 0, 0, 0.4);
     }
 
-    .top-bar img {
-      height: 60px;
+    .wolf-icon {
       width: 60px;
-      object-fit: cover;
+      height: 60px;
+      background-image: url('https://i.imgur.com/6XZUjGo.png');
+      background-size: cover;
+      background-position: center;
       border-radius: 50%;
     }
 
@@ -49,10 +50,18 @@
       color: #fff;
     }
 
-    .subtitle img {
-      width: 30px;
-      height: 30px;
-      object-fit: contain;
+    .dollar-icon {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background-color: #0f0;
+      color: #000;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      box-shadow: 0 0 10px rgba(0,255,0,0.6);
     }
 
     .container {
@@ -80,17 +89,17 @@
       text-decoration: none;
       border-radius: 12px;
       box-shadow: 0 0 8px 2px rgba(255, 0, 0, 0.7);
-      transition: all 0.3s ease;
+      transition: transform 0.2s ease, box-shadow 0.3s ease;
       border: none;
       outline: none;
     }
 
-    a.btn:focus {
+    a.btn:focus, a.btn:active {
       outline: none;
     }
 
     a.btn:active {
-      outline: none;
+      transform: scale(1.07);
     }
 
     a.btn::before {
@@ -119,12 +128,6 @@
       filter: none;
     }
 
-    /* ✅ تأثير الضغط على زر */
-    a.btn.active {
-      transform: scale(1.1);
-      box-shadow: 0 0 20px 8px rgba(255, 0, 0, 1);
-    }
-
     @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap');
   </style>
 </head>
@@ -132,14 +135,14 @@
 
   <!-- ✅ الشريط العلوي -->
   <div class="top-bar">
-    <img src="https://i.imgur.com/6XZUjGo.png" alt="Wolf" />
+    <div class="wolf-icon"></div>
     <div class="title">Muxbet</div>
   </div>
 
   <!-- ✅ النص تحت الشريط العلوي -->
   <div class="subtitle">
     <span>طريقك لربح الأموال</span>
-    <img src="https://cdn-icons-png.flaticon.com/512/2331/2331944.png" alt="Money" />
+    <div class="dollar-icon">$</div>
   </div>
 
   <!-- ✅ الأزرار -->
@@ -159,17 +162,6 @@
       تحميل PariXploit
     </a>
   </div>
-
-  <!-- ✅ سكربت تفعيل أنيميشن عند الضغط -->
-  <script>
-    const buttons = document.querySelectorAll('.btn');
-    buttons.forEach(btn => {
-      btn.addEventListener('click', () => {
-        buttons.forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-      });
-    });
-  </script>
 
 </body>
 </html>
