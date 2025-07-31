@@ -1,82 +1,128 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>أزرار توهج حمراء</title>
-<style>
-  html, body {
-    margin: 0; padding: 0; height: 100%;
-    background-color: #000; /* الخلفية سوداء */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-family: Arial, sans-serif;
-  }
-  .buttons-container {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-  }
-  a.btn {
-    position: relative;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    background-color: #111; /* خلفية الزر أسود داكن */
-    color: #fff;
-    padding: 15px 30px;
-    font-size: 20px;
-    font-weight: bold;
-    text-decoration: none;
-    border-radius: 10px;
-    box-shadow: 0 0 8px 2px rgba(255, 0, 0, 0.7); /* توهج أحمر ناعم */
-    transition: box-shadow 0.3s ease;
-  }
-  a.btn:hover {
-    box-shadow: 0 0 20px 6px rgba(255, 0, 0, 1);
-  }
-  a.btn::before {
-    content: '';
-    position: absolute;
-    top: 50%; left: 50%;
-    transform: translate(-50%, -50%);
-    width: 115%;
-    height: 115%;
-    background: rgba(255, 0, 0, 0.3);
-    border-radius: 10px;
-    filter: blur(10px);
-    opacity: 0.6;
-    transition: opacity 0.3s ease;
-    z-index: -1;
-  }
-  a.btn:hover::before {
-    opacity: 1;
-  }
-  .icon-img {
-    width: 28px;
-    height: 28px;
-    object-fit: contain;
-    filter: none; /* الألوان الأصلية */
-  }
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Muxbet</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      background-color: #000;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    /* الشريط العلوي */
+    .top-bar {
+      background-color: #111;
+      color: #fff;
+      padding: 15px 25px;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      box-shadow: 0 2px 8px rgba(255, 0, 0, 0.4);
+    }
+
+    .top-bar img {
+      height: 50px;
+      width: 50px;
+      object-fit: contain;
+    }
+
+    .top-bar .title {
+      font-size: 28px;
+      font-weight: bold;
+      font-family: 'Orbitron', sans-serif;
+      letter-spacing: 1px;
+    }
+
+    .container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding-top: 80px;
+      flex-direction: column;
+      gap: 25px;
+    }
+
+    a.btn {
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background-color: #111;
+      color: #fff;
+      padding: 15px 30px;
+      font-size: 20px;
+      font-weight: bold;
+      text-decoration: none;
+      border-radius: 10px;
+      box-shadow: 0 0 8px 2px rgba(255, 0, 0, 0.7);
+      transition: box-shadow 0.3s ease;
+    }
+
+    a.btn:hover {
+      box-shadow: 0 0 20px 6px rgba(255, 0, 0, 1);
+    }
+
+    a.btn::before {
+      content: '';
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 115%;
+      height: 115%;
+      background: rgba(255, 0, 0, 0.3);
+      border-radius: 10px;
+      filter: blur(10px);
+      opacity: 0.6;
+      transition: opacity 0.3s ease;
+      z-index: -1;
+    }
+
+    a.btn:hover::before {
+      opacity: 1;
+    }
+
+    .icon-img {
+      width: 30px;
+      height: 30px;
+      object-fit: contain;
+    }
+
+    /* خط مميز للشعار */
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap');
+  </style>
 </head>
 <body>
 
-<div class="buttons-container">
-  <a href="https://t.me/xbet_mux" class="btn" target="_blank" rel="noopener noreferrer">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg" alt="Telegram" class="icon-img" />
-    قناة تيليجرام
-  </a>
-  <a href="https://play.gooqle.co/store/apps/details?id=xparibet&promo=evo3&hl=en&gl=US" class="btn" target="_blank" rel="noopener noreferrer">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/e/ea/XpariBet_Logo.png" alt="XpariBet" class="icon-img" />
-    تحميل تطبيق XpariBet
-  </a>
-  <a href="https://t.me/xbet_Mux/418" class="btn" target="_blank" rel="noopener noreferrer">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg" alt="PariXploit" class="icon-img" />
-    تحميل PariXploit
-  </a>
-</div>
+  <!-- ✅ الشريط العلوي -->
+  <div class="top-bar">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg" alt="Muxbet Logo">
+    <div class="title">Muxbet</div>
+  </div>
+
+  <!-- ✅ الأزرار -->
+  <div class="container">
+    <!-- زر 1 - Telegram -->
+    <a href="https://t.me/xbet_mux" class="btn" target="_blank">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg" class="icon-img" alt="Telegram" />
+      قناة تيليجرام
+    </a>
+
+    <!-- زر 2 - XpariBet (صورة بديلة لشعار) -->
+    <a href="https://play.gooqle.co/store/apps/details?id=xparibet&promo=evo3&hl=en&gl=US" class="btn" target="_blank">
+      <img src="https://i.imgur.com/sduyWD8.png" class="icon-img" alt="XpariBet" />
+      تحميل تطبيق XpariBet
+    </a>
+
+    <!-- زر 3 - تفاحة كرتونية -->
+    <a href="https://t.me/xbet_Mux/418" class="btn" target="_blank">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg" class="icon-img" alt="Apple Cartoon" />
+      تحميل PariXploit
+    </a>
+  </div>
 
 </body>
 </html>
