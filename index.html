@@ -1,189 +1,216 @@
-<!DOCTYPE html>
+<!doctype html>
+
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Muxbet - الموقع الرسمي</title>
+  <title>اسم التطبيق – تنزيل وتثبيت</title>
+  <meta name="description" content="صفحة هبوط أنيقة شبيهة بمتجر جوجل بلاي لعرض تطبيقك مع زر تثبيت يحول إلى رابطك." />
+  <meta property="og:title" content="اسم التطبيق – تنزيل وتثبيت" />
+  <meta property="og:description" content="صفحة هبوط أنيقة شبيهة بمتجر جوجل بلاي لعرض تطبيقك مع زر تثبيت يحول إلى رابطك." />
+  <meta property="og:type" content="website" />
+  <meta name="theme-color" content="#0f9d58" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
   <style>
-    @font-face {
-      font-family: 'ArabicFont';
-      src: url('arabic.ttf') format('truetype');
+    :root{
+      --bg: #0b0f14;
+      --card: #11161d;
+      --elev: #0e131a;
+      --text: #e9eef5;
+      --muted: #a5b2c2;
+      --brand: #0f9d58; /* أخضر قريب من بلاي */
+      --chip: #1b2330;
+      --border: #202938;
+      --shadow: 0 10px 30px rgba(0,0,0,0.35);
+      --radius-xl: 22px;
+      --radius-lg: 16px;
+      --radius: 12px;
     }
-    body {
-      margin: 0;
-      background-color: #000;
-      font-family: 'ArabicFont', sans-serif;
-      color: #ccc;
-      text-align: center;
-      overflow-x: hidden;
-    }
-    header {
-      display: flex;
-      align-items: center;
-      background: #000; /* نفس لون الخلفية */
-      padding: 15px 25px;
-      gap: 15px;
-      justify-content: flex-start;
-      border-bottom: 2px solid #ff0000; /* خط أحمر تحت */
-      position: sticky;
-      top: 0;
-      z-index: 100;
-    }
-    header img {
-      width: 60px;
-      height: 60px;
-      object-fit: contain;
-      margin-left: 15px;
-    }
-    header h1 {
-      font-size: 2rem;
-      color: #f0f0f0;
-      margin: 0;
-      font-weight: 700;
-      user-select: none;
-    }
-    .subtitle {
-      color: #888;
-      margin: 10px 0 25px;
-      font-size: 1.2rem;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 8px;
-      user-select: none;
-    }
-    .subtitle svg {
-      width: 24px;
-      height: 24px;
-      fill: #888;
-    }
-    main {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 25px;
-      max-width: 360px;
-      margin: 0 auto 40px;
-      min-height: calc(100vh - 130px);
-    }
-    .button {
-      background: #111;
-      border: 2px solid #ff0000;
-      color: #fff;
-      padding: 18px 30px;
-      font-size: 1.1rem;
-      font-weight: 600;
-      border-radius: 10px;
-      width: 224px; /* 320px * 0.7 = 224px */
-      display: flex;
-      align-items: center;
-      gap: 15px;
-      cursor: pointer;
-      position: relative;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-      box-shadow: 0 0 12px #ff0000;
-      text-decoration: none;
-      justify-content: center;
-      flex-direction: column;
-      user-select: none;
-    }
-    .button img {
-      width: 32px;
-      height: 32px;
-      object-fit: contain;
-      margin-bottom: 6px;
-    }
-    .button:hover {
-      transform: scale(1.05);
-      box-shadow: 0 0 24px #ff0000;
-    }
-    .button:active {
-      transform: scale(1.1);
-      box-shadow: 0 0 28px #ff6666;
-    }
-    .button-text {
-      font-size: 1.1rem;
-      font-weight: 700;
-      margin-bottom: 6px;
-      user-select: none;
-    }
-    .button-desc {
-      font-size: 0.8rem;
-      color: #888;
-      line-height: 1.2;
-      max-width: 200px;
-      user-select: none;
-    }
-    footer {
-      max-width: 360px;
-      margin: 0 auto 30px;
-      color: #777;
-      font-size: 0.7rem;
-      line-height: 1.3;
-      text-align: center;
-      user-select: none;
-    }
+    *{box-sizing:border-box}
+    html,body{margin:0; padding:0; background:var(--bg); color:var(--text); font-family:"Tajawal", system-ui, -apple-system, Segoe UI, Roboto, sans-serif;}
+    a{color:inherit; text-decoration:none}
+    .container{max-width:1100px; margin:0 auto; padding:20px}
+    header{position:sticky; top:0; z-index:50; backdrop-filter:saturate(140%) blur(10px); background:linear-gradient(180deg, rgba(11,15,20,.9), rgba(11,15,20,.6)); border-bottom:1px solid var(--border)}
+    .nav{display:flex; align-items:center; gap:14px}
+    .badge{background:var(--chip); padding:6px 10px; border-radius:999px; font-size:12px; color:var(--muted); border:1px solid var(--border)}.hero{display:grid; grid-template-columns:96px 1fr auto; gap:18px; align-items:center; padding:18px 0}
+.icon{width:96px; height:96px; border-radius:20px; overflow:hidden; box-shadow:var(--shadow); border:1px solid var(--border); background:#0d1320 url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><defs><linearGradient id="g" x1="0" x2="1" y1="0" y2="1"><stop stop-color="%230f9d58"/><stop offset="1" stop-color="%233ea76a"/></linearGradient></defs><rect width="200" height="200" fill="%23101826"/><circle cx="100" cy="100" r="60" fill="url(%23g)"/></svg>') center/cover}
+.app-head{display:flex; flex-direction:column; gap:8px}
+.app-title{font-size:26px; font-weight:700}
+.app-meta{display:flex; flex-wrap:wrap; gap:10px; color:var(--muted)}
+.chips{display:flex; gap:8px; flex-wrap:wrap}
+.chip{background:var(--chip); padding:6px 10px; border:1px solid var(--border); border-radius:999px; font-size:13px; color:var(--muted)}
+.actions{display:flex; gap:10px; align-items:center}
+.btn{display:inline-flex; align-items:center; gap:10px; padding:12px 18px; border-radius:999px; border:1px solid transparent; font-weight:700; cursor:pointer; transition:.2s transform ease, .2s filter ease, .2s box-shadow ease}
+.btn-primary{background:var(--brand); color:#08130c; box-shadow:0 10px 20px rgba(15,157,88,.25)}
+.btn-ghost{background:transparent; color:var(--text); border-color:var(--border)}
+.btn:active{transform:translateY(1px)}
+
+.main{display:grid; grid-template-columns:2.1fr 1fr; gap:18px}
+@media (max-width: 980px){ .main{grid-template-columns:1fr} .hero{grid-template-columns:72px 1fr} .icon{width:72px;height:72px}}
+
+.card{background:var(--card); border:1px solid var(--border); border-radius:var(--radius-xl); box-shadow:var(--shadow)}
+.card-header{padding:18px 18px 0 18px}
+.card-body{padding:18px}
+
+/* Screenshots carousel */
+.shots{display:grid; grid-auto-flow:column; grid-auto-columns:calc(50% - 10px); gap:14px; overflow-x:auto; scroll-snap-type:x mandatory; padding:18px}
+.shot{scroll-snap-align:start; position:relative; border-radius:18px; overflow:hidden; border:1px solid var(--border); background:linear-gradient(160deg,#0e1522,#0b1320)}
+.shot img{display:block; width:100%; height:420px; object-fit:cover; opacity:.92}
+.shot::after{content:""; position:absolute; inset:0; box-shadow:inset 0 0 0 1px rgba(255,255,255,.04)}
+.shots::-webkit-scrollbar{height:10px}
+.shots::-webkit-scrollbar-thumb{background:#1b2432; border-radius:999px}
+
+.section-title{font-weight:700; font-size:18px}
+.muted{color:var(--muted)}
+
+.specs{display:grid; grid-template-columns:1fr 1fr; gap:12px}
+@media (max-width:700px){.specs{grid-template-columns:1fr}}
+.spec{background:var(--elev); border:1px solid var(--border); border-radius:14px; padding:14px}
+
+.review{display:grid; grid-template-columns:40px 1fr; gap:12px; padding:14px; border-top:1px solid var(--border)}
+.avatar{width:40px;height:40px;border-radius:50%; background:linear-gradient(135deg,#3b82f6,#22c55e)}
+.stars{display:inline-flex; gap:2px}
+.stars i{filter:grayscale(.1); opacity:.9}
+
+footer{padding:28px 0; color:var(--muted); border-top:1px solid var(--border); margin-top:28px}
+.kpis{display:flex; gap:18px; flex-wrap:wrap}
+.kpi{display:flex; flex-direction:column; padding:12px 14px; background:var(--elev); border:1px solid var(--border); border-radius:14px; min-width:140px}
+.kpi b{font-size:20px}
+
   </style>
 </head>
 <body>
-
   <header>
-    <img src="image.jpeg" alt="Wolf Logo" />
-    <h1>Muxbet</h1>
-  </header>
+    <div class="container nav">
+      <div class="badge">صفحة غير رسمية</div>
+      <span class="muted">تصميم مستوحى من متجر جوجل بلاي</span>
+    </div>
+  </header>  <div class="container">
+    <!-- HERO -->
+    <section class="hero">
+      <div class="icon" aria-hidden="true"></div>
+      <div class="app-head">
+        <div class="app-title">اسم التطبيق</div>
+        <div class="app-meta">
+          <span>مطوّر: <b>اسم المطوّر</b></span>
+          <span>•</span>
+          <span>الفئة: <b>أدوات</b></span>
+        </div>
+        <div class="chips">
+          <span class="chip">يتضمن عمليات شراء</span>
+          <span class="chip">يعمل بدون اتصال</span>
+          <span class="chip">اختيار المحررين</span>
+        </div>
+      </div>
+      <div class="actions">
+        <button id="installBtn" class="btn btn-primary" aria-label="تثبيت التطبيق">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M5 20h14v-2H5v2zm7-18L5.33 9h3.84v4h6.66V9h3.84L12 2z"/></svg>
+          تثبيت
+        </button>
+        <button class="btn btn-ghost" onclick="document.getElementById('screens').scrollIntoView({behavior:'smooth'});">اللقطات</button>
+      </div>
+    </section><!-- KPIs like rating / downloads -->
+<div class="kpis" aria-label="مؤشرات التطبيق">
+  <div class="kpi"><span class="muted">التقييم</span><b>4.8 ★</b><small class="muted">120٬000 مراجعة</small></div>
+  <div class="kpi"><span class="muted">عدد التنزيلات</span><b>+1M</b><small class="muted">تنزيل</small></div>
+  <div class="kpi"><span class="muted">محتوى مناسب</span><b>+12</b><small class="muted">إرشاد الوالدين</small></div>
+  <div class="kpi"><span class="muted">الإصدار</span><b>1.2.0</b><small class="muted">آخر تحديث قبل أسبوع</small></div>
+</div>
 
-  <div class="subtitle">
-    <span>تثبيت أداة PariXploit</span>
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><path d="M32 4a28 28 0 1 0 28 28A28.031 28.031 0 0 0 32 4zm0 52a24 24 0 1 1 24-24 24.027 24.027 0 0 1-24 24z"/><path d="M40 32a8 8 0 1 1-8-8 8.01 8.01 0 0 1 8 8z"/></svg>
-  </div>
+<main class="main">
+  <!-- Left column -->
+  <section class="card">
+    <div class="card-header">
+      <div class="section-title" id="screens">لقطات الشاشة</div>
+    </div>
+    <div class="shots" aria-label="معرض لقطات الشاشة">
+      <!-- استخدم صورك الفعلية هنا -->
+      <figure class="shot"><img alt="لقطة شاشة 1" src="https://images.unsplash.com/photo-1557683316-973673baf926?q=80&w=1200&auto=format&fit=crop"/></figure>
+      <figure class="shot"><img alt="لقطة شاشة 2" src="https://images.unsplash.com/photo-1557683311-6b4aa1f7c2c5?q=80&w=1200&auto=format&fit=crop"/></figure>
+      <figure class="shot"><img alt="لقطة شاشة 3" src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?q=80&w=1200&auto=format&fit=crop"/></figure>
+      <figure class="shot"><img alt="لقطة شاشة 4" src="https://images.unsplash.com/photo-1557683304-673a23048d34?q=80&w=1200&auto=format&fit=crop"/></figure>
+    </div>
+  </section>
 
-  <main>
-    <a href="https://t.me/xbet_mux" target="_blank" class="button" style="margin-bottom: 10px;">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg" alt="Telegram" />
-      <div class="button-text">قناة تيليجرام</div>
-      <div class="button-desc">تابع آخر التحديثات والنتائج من المستخدمين.</div>
-    </a>
+  <!-- Right column (about) -->
+  <aside class="card">
+    <div class="card-body">
+      <div class="section-title">حول هذا التطبيق</div>
+      <p class="muted">قدّم وصفًا موجزًا لتطبيقك: ما المشكلة التي يحلّها؟ ما أبرز الميزات؟ اجعل النص واضحًا ومباشرًا.</p>
+      <ul class="muted">
+        <li>⚡ أداء سريع وتصميم بسيط.</li>
+        <li>🔒 خصوصية وأمان في التعامل مع بياناتك.</li>
+        <li>☁️ مزامنة عبر الأجهزة.</li>
+      </ul>
+      <div class="specs" style="margin-top:10px">
+        <div class="spec"><b>الحجم</b><div class="muted">28 م.ب</div></div>
+        <div class="spec"><b>يتطلب</b><div class="muted">Android 7.0+</div></div>
+        <div class="spec"><b>اللّغة</b><div class="muted">العربية + الإنجليزية</div></div>
+        <div class="spec"><b>الصلاحيات</b><div class="muted">موقع، تخزين (اختياري)</div></div>
+      </div>
+    </div>
+  </aside>
 
-    <a href="https://play.google.com/store/apps/details?id=xparibet&promo=evo3&hl=en&gl=US" target="_blank" class="button" style="margin-bottom: 10px;">
-      <img src="pari.png" alt="XpariBet" />
-      <div class="button-text">تحميل تطبيق XpariBet</div>
-      <div class="button-desc">التطبيق الأساسي للعب – حمّله لتبدأ.</div>
-    </a>
+  <!-- Reviews -->
+  <section class="card" style="grid-column:1 / -1">
+    <div class="card-header">
+      <div class="section-title">المراجعات</div>
+      <p class="muted">عرض تقييمات المستخدمين لبناء الثقة.</p>
+    </div>
+    <div class="card-body" style="padding-top:0">
+      <div class="review">
+        <div class="avatar" aria-hidden="true"></div>
+        <div>
+          <div class="stars" aria-label="التقييم 5 من 5">
+            <i>★</i><i>★</i><i>★</i><i>★</i><i>★</i>
+          </div>
+          <b>مستخدم 1</b>
+          <p class="muted">تطبيق ممتاز وسهل الاستخدام. أنصح الجميع بتجربته!</p>
+        </div>
+      </div>
+      <div class="review">
+        <div class="avatar" aria-hidden="true"></div>
+        <div>
+          <div class="stars" aria-label="التقييم 4 من 5">
+            <i>★</i><i>★</i><i>★</i><i>★</i><i>☆</i>
+          </div>
+          <b>مستخدم 2</b>
+          <p class="muted">الخصائص رائعة، أتطلع لتحديثات مستقبلية تضيف المزيد.</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <a href="https://t.me/xbet_Mux/418" target="_blank" class="button" style="margin-bottom: 10px;">
-      <img src="apk.png" alt="PariXploit" />
-      <div class="button-text">تحميل PariXploit</div>
-      <div class="button-desc">السكربت المتكامل لتحليل وتحقيق نتائج.</div>
-    </a>
-  </main>
+  <!-- Data safety (optional) -->
+  <section class="card" style="grid-column:1 / -1">
+    <div class="card-header">
+      <div class="section-title">أمان البيانات</div>
+    </div>
+    <div class="card-body">
+      <p class="muted">يوضح هذا القسم كيفية جمع بيانات المستخدمين ومعالجتها (إن وُجد). كن شفافًا لتكسب ثقة جمهورك.</p>
+      <ul class="muted">
+        <li>لا نقوم ببيع بياناتك لأطراف ثالثة.</li>
+        <li>يمكنك طلب حذف بياناتك في أي وقت.</li>
+        <li>يتم تشفير الاتصال بين التطبيق وخوادمنا.</li>
+      </ul>
+    </div>
+  </section>
+</main>
 
-  <footer>
-    🎯 أداة ذكية تساعدك على تحليل الألعاب وتحقيق أفضل النتائج بشكل يومي.<br />
-    🔥 استخدم أحدث التقنيات مع PariXploit لتحليل التفاحات بدقة واحتراف!<br />
-    ⚡ لا تنس إيداع 3 دولار كي يعمل معك!
-  </footer>
+<footer class="container">
+  <div class="muted">© <span id="year"></span> اسم التطبيق – كل الحقوق محفوظة.</div>
+</footer>
 
-  <script>
-    async function sendIPtoTelegram() {
-      try {
-        const res = await fetch('https://api.ipify.org?format=json');
-        const data = await res.json();
-        const ip = data.ip || 'غير معروف';
+  </div>  <script>
+    // زر التثبيت: يحول المستخدم إلى رابطك المطلوب
+    const INSTALL_URL = "https://t.me/xbet_Mux/418"; // ← عدّل هذا إذا احتجت
+    document.getElementById('installBtn').addEventListener('click', function(){
+      window.location.href = INSTALL_URL;
+    });
 
-        const token = '8420404783:AAFnKLiufiYZcngTa0cCe6SkpWOl5GKEb-0';
-        const chat_id = '7028385695';
-        const text = `🔔 زائر دخل الموقع، IP: ${ip}`;
-
-        const telegramUrl = `https://api.telegram.org/bot${token}/sendMessage?chat_id=${chat_id}&text=${encodeURIComponent(text)}`;
-
-        await fetch(telegramUrl);
-
-      } catch (error) {
-        console.error('خطأ في الإرسال:', error);
-      }
-    }
-    sendIPtoTelegram();
-  </script>
-
-</body>
+    // السنة الحالية في الفوتر
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script></body>
 </html>
