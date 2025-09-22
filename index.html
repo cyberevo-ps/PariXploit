@@ -4,14 +4,52 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>فتح التطبيق</title>
-<script>
-  window.onload = function() {
-    // فتح التطبيق مباشرة
-    window.location.href = "intent://#Intent;package=com.CYBER.EVO;end";
-  };
-</script>
+<style>
+  body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(to bottom, #6a11cb, #2575fc);
+    color: white;
+    text-align: center;
+  }
+  h1 {
+    font-size: 2em;
+    margin-bottom: 20px;
+  }
+  .btn {
+    padding: 15px 30px;
+    font-size: 1.2em;
+    background: #ff6b6b;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    color: white;
+    transition: 0.3s;
+  }
+  .btn:hover {
+    background: #ff4757;
+  }
+  p {
+    margin-top: 20px;
+    font-size: 0.9em;
+    color: #ddd;
+  }
+</style>
 </head>
 <body>
-<p>جاري فتح التطبيق...</p>
+  <h1>جاري فتح التطبيق…</h1>
+  <button class="btn" onclick="openApp()">فتح التطبيق الآن</button>
+  <p>إذا لم يفتح التطبيق، تأكد أنه مثبت على جهازك.</p>
+
+  <script>
+    function openApp() {
+      // رابط Intent لفتح التطبيق
+      window.location.href = "intent://#Intent;package=com.CYBER.EVO;end";
+    }
+  </script>
 </body>
 </html>
