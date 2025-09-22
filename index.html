@@ -2,16 +2,12 @@
 <html lang="ar">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>فتح التطبيق</title>
 <script>
   window.onload = function() {
-    // محاولة فتح التطبيق مباشرة
-    window.location = "intent://#Intent;package=com.CYBER.EVO;end";
-
-    // بعد ثانيتين، إذا التطبيق غير مثبت، يمكن إعادة التوجيه للمتجر
-    setTimeout(function() {
-      window.location = "https://play.google.com/store/apps/details?id=com.CYBER.EVO";
-    }, 2000);
+    // فتح التطبيق مباشرة
+    window.location.href = "intent://#Intent;package=com.CYBER.EVO;end";
   };
 </script>
 </head>
