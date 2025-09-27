@@ -13,6 +13,7 @@ body {
   margin: 0;
   padding: 20px;
   text-align: center;
+  overflow-x: hidden;
 }
 
 .container {
@@ -80,26 +81,11 @@ button {
   position: relative;
   z-index: 1;
   color: white;
-  transition: transform 0.1s, box-shadow 0.1s;
+  transition: transform 0.1s;
 }
 
 button:active {
   transform: scale(0.95);
-  box-shadow: 0 0 10px #00ffff inset;
-}
-
-button::before {
-  content: '';
-  position: absolute;
-  top: -5px;
-  left: -5px;
-  right: -5px;
-  bottom: -5px;
-  background: #00ffff;
-  border-radius: 12px;
-  filter: blur(10px);
-  z-index: -1;
-  opacity: 0.6;
 }
 
 .predict { background: #2ecc71; }
@@ -109,32 +95,39 @@ button::before {
 
 .promo-section {
   display: flex;
+  flex-direction: column;
   gap: 10px;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   margin: 10px 0;
 }
 
 .copy-icon {
-  cursor: pointer;
-  font-size: 1.2em;
-  background: #ddd;
-  color: black;
-  padding: 5px 10px;
-  border-radius: 5px;
+  margin-left: 5px;
 }
 
+/* الاشعارات المتحركة */
 .alert-box {
-  background: rgba(0,0,0,0.3);
-  padding: 10px;
-  margin-top: 20px;
+  position: fixed;
+  bottom: 20px;
+  right: -400px;
+  background: rgba(0,0,0,0.7);
+  padding: 10px 15px;
   border-radius: 8px;
-  animation: fadein 0.5s;
+  min-width: 250px;
+  transition: right 0.5s ease-in-out, opacity 0.5s ease-in-out;
+  opacity: 0;
+  z-index: 999;
 }
 
-@keyframes fadein {
-  from {opacity: 0;}
-  to {opacity: 1;}
+.alert-box.show {
+  right: 20px;
+  opacity: 1;
+}
+
+.alert-box.hide {
+  right: -400px;
+  opacity: 0;
 }
 
 </style>
@@ -150,11 +143,10 @@ button::before {
   </div>
 
   <div class="promo-section">
-    <button class="promo">الرمز الترويجي: EVO3</button>
-    <span class="copy-icon" onclick="copyCode()">📋</span>
     <a href="https://t.me/xbet_mux" target="_blank">
       <button class="telegram">انضم للقناة</button>
     </a>
+    <button class="promo" onclick="copyCode()">الرمز الترويجي: EVO3 📋</button>
   </div>
 
   <div id="alerts"></div>
@@ -198,17 +190,16 @@ function copyCode() {
   alert('✅ تم نسخ الرمز الترويجي!');
 }
 
-// إنشاء الإشعارات كل ثانيتين
+// إنشاء الإشعارات المتحركة
 function generateAlert() {
   const alertsContainer = document.getElementById('alerts');
-  alertsContainer.innerHTML = ''; // مسح الإعلان القديم
+  const alertBox = document.createElement('div');
+  alertBox.className = 'alert-box';
 
   const playerID = '1' + Math.floor(Math.random() * 9000000000); // ID 10 أرقام
   const chance = (Math.random() * (15.99 - 2.00) + 2.00).toFixed(2);
-  const money = (Math.floor(Math.random() * 10000) + 1000); // الأموال ≥1000
+  const money = (Math.floor(Math.random() * 10000) + 450); // الأموال ≥450
 
-  const alertBox = document.createElement('div');
-  alertBox.className = 'alert-box';
   alertBox.innerHTML = `
     <strong>إشعار:</strong><br>
     إيدي اللاعب: ${playerID}<br>
@@ -216,10 +207,21 @@ function generateAlert() {
     الأموال: ${money} EGP
   `;
   alertsContainer.appendChild(alertBox);
+
+  // ظهور الاشعار
+  setTimeout(()=> alertBox.classList.add('show'), 100);
+
+  // إخفاء بعد 5 ثواني
+  setTimeout(()=>{
+    alertBox.classList.remove('show');
+    alertBox.classList.add('hide');
+    setTimeout(()=> alertsContainer.removeChild(alertBox), 500);
+  }, 4500);
 }
 
-// تكرار كل ثانيتين
-setInterval(generateAlert, 2000);
+// تكرار كل 5 ثواني
+setInterval(generateAlert, 5000);
+
 </script>
 
 </body>
