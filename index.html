@@ -1,164 +1,226 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <title>واجهة التوقع</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
-  <style>
-    body {
-      font-family: 'Tajawal', sans-serif;
-      background: #0b1e3f;
-      color: white;
-      margin: 0;
-      padding: 20px;
-      text-align: center;
-    }
+<meta charset="UTF-8">
+<title>واجهة التوقع</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
+<style>
+body {
+  font-family: 'Tajawal', sans-serif;
+  background: #0b1e3f;
+  color: white;
+  margin: 0;
+  padding: 20px;
+  text-align: center;
+}
 
-    .container {
-      max-width: 400px;
-      margin: auto;
-    }
+.container {
+  max-width: 500px;
+  margin: auto;
+}
 
-    .circle {
-      width: 150px;
-      height: 150px;
-      margin: 20px auto;
-      border-radius: 50%;
-      background: radial-gradient(circle, #00aaff, #004466);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 2em;
-      transition: all 0.3s ease-in-out;
-    }
+.circle {
+  width: 180px;
+  height: 180px;
+  margin: 20px auto;
+  border-radius: 50%;
+  background: radial-gradient(circle, #00aaff, #004466);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2em;
+  position: relative;
+  transition: all 0.3s ease-in-out;
+  color: #fff;
+}
 
-    /* تأثير الرقم عند تغييره */
-    .animate-change {
-      animation: flash 0.5s ease-in-out;
-    }
+/* حواف متحركة دائماً */
+.circle::before {
+  content: '';
+  position: absolute;
+  top: -5px; left: -5px; right: -5px; bottom: -5px;
+  border-radius: 50%;
+  border: 4px solid transparent;
+  border-top-color: #00ffff;
+  border-right-color: #00ffff;
+  animation: spin 2s linear infinite;
+}
 
-    @keyframes flash {
-      0% { transform: scale(1); background: #00aaff; }
-      50% { transform: scale(1.1); background: #00ffff; }
-      100% { transform: scale(1); background: #00aaff; }
-    }
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
 
-    button {
-      width: 90%;
-      margin: 10px auto;
-      padding: 12px;
-      font-size: 1em;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      display: block;
-      position: relative;
-      z-index: 1;
-      color: white;
-      transition: transform 0.1s, box-shadow 0.1s;
-    }
+/* تأثير الرقم عند تغييره */
+.animate-change {
+  animation: flash 0.5s ease-in-out;
+}
 
-    /* تأثير الزر عند الضغط */
-    button:active {
-      transform: scale(0.95);
-      box-shadow: 0 0 10px #00ffff inset;
-    }
+@keyframes flash {
+  0% { transform: scale(1); color: #00ffff; }
+  50% { transform: scale(1.2); color: #fff200; }
+  100% { transform: scale(1); color: #ffffff; }
+}
 
-    button::before {
-      content: '';
-      position: absolute;
-      top: -5px;
-      left: -5px;
-      right: -5px;
-      bottom: -5px;
-      background: #00ffff;
-      border-radius: 12px;
-      filter: blur(10px);
-      z-index: -1;
-      opacity: 0.6;
-    }
+.button-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  margin: 10px 0;
+}
 
-    .predict { background: #2ecc71; }
-    .reset { background: #e74c3c; }
-    .telegram { background: #3498db; }
-    .promo { background: #333; }
+button {
+  flex: 1;
+  padding: 12px;
+  font-size: 1em;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  position: relative;
+  z-index: 1;
+  color: white;
+  transition: transform 0.1s, box-shadow 0.1s;
+}
 
-    .promo-section {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 10px;
-      margin-top: 10px;
-    }
+button:active {
+  transform: scale(0.95);
+  box-shadow: 0 0 10px #00ffff inset;
+}
 
-    .copy-icon {
-      cursor: pointer;
-      font-size: 1.2em;
-      background: #ddd;
-      color: black;
-      padding: 5px 10px;
-      border-radius: 5px;
-    }
+button::before {
+  content: '';
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  right: -5px;
+  bottom: -5px;
+  background: #00ffff;
+  border-radius: 12px;
+  filter: blur(10px);
+  z-index: -1;
+  opacity: 0.6;
+}
 
-    a { text-decoration: none; }
-  </style>
+.predict { background: #2ecc71; }
+.reset { background: #e74c3c; }
+.telegram { background: #3498db; }
+.promo { background: #333; }
+
+.promo-section {
+  display: flex;
+  gap: 10px;
+  justify-content: space-between;
+  align-items: center;
+  margin: 10px 0;
+}
+
+.copy-icon {
+  cursor: pointer;
+  font-size: 1.2em;
+  background: #ddd;
+  color: black;
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+
+.alert-box {
+  background: rgba(0,0,0,0.3);
+  padding: 10px;
+  margin-top: 20px;
+  border-radius: 8px;
+  animation: fadein 0.5s;
+}
+
+@keyframes fadein {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}
+
+</style>
 </head>
 <body>
 
-  <div class="container">
-    <div class="circle" id="multiplier">X0.00</div>
+<div class="container">
+  <div class="circle" id="multiplier">X0.00</div>
 
+  <div class="button-row">
     <button class="predict" onclick="predict()">عرض التوقع</button>
-    <button class="reset" onclick="reset()">إعادة تعيين</button>
+    <button class="reset" onclick="reset()">إعادة التعيين</button>
+  </div>
 
-    <div class="promo-section">
-      <button class="promo">الرمز الترويجي: EVO3</button>
-      <span class="copy-icon" onclick="copyCode()">📋</span>
-    </div>
-
+  <div class="promo-section">
+    <button class="promo">الرمز الترويجي: EVO3</button>
+    <span class="copy-icon" onclick="copyCode()">📋</span>
     <a href="https://t.me/xbet_mux" target="_blank">
       <button class="telegram">انضم للقناة</button>
     </a>
   </div>
 
-  <script>
-    function animateNumber(element, start, end, duration) {
-      let startTime = null;
-      function step(currentTime) {
-        if (!startTime) startTime = currentTime;
-        const progress = Math.min((currentTime - startTime) / duration, 1);
-        const value = (start + (end - start) * progress).toFixed(2);
-        element.textContent = `X${value}`;
-        if (progress < 1) {
-          requestAnimationFrame(step);
-        }
-      }
-      requestAnimationFrame(step);
-    }
+  <div id="alerts"></div>
+</div>
 
-    function predict() {
-      const random = (Math.random() * (15.99 - 2.00) + 2.00);
-      const multiplier = document.getElementById('multiplier');
-      const current = parseFloat(multiplier.textContent.replace('X','')) || 0;
-      animateNumber(multiplier, current, random, 500);
-      multiplier.classList.add('animate-change');
-      setTimeout(() => multiplier.classList.remove('animate-change'), 500);
-    }
+<script>
+// عداد الرقم المتحرك
+function animateNumber(element, start, end, duration) {
+  let startTime = null;
+  function step(currentTime) {
+    if (!startTime) startTime = currentTime;
+    const progress = Math.min((currentTime - startTime) / duration, 1);
+    const value = (start + (end - start) * progress).toFixed(2);
+    element.textContent = `X${value}`;
+    if (progress < 1) requestAnimationFrame(step);
+  }
+  requestAnimationFrame(step);
+}
 
-    function reset() {
-      const multiplier = document.getElementById('multiplier');
-      const current = parseFloat(multiplier.textContent.replace('X','')) || 0;
-      animateNumber(multiplier, current, 0, 500);
-      multiplier.classList.add('animate-change');
-      setTimeout(() => multiplier.classList.remove('animate-change'), 500);
-    }
+// أزرار التوقع وإعادة التعيين
+function predict() {
+  const random = Math.random() * (15.99 - 2.00) + 2.00;
+  const multiplier = document.getElementById('multiplier');
+  const current = parseFloat(multiplier.textContent.replace('X','')) || 0;
+  animateNumber(multiplier, current, random, 500);
+  multiplier.classList.add('animate-change');
+  setTimeout(()=> multiplier.classList.remove('animate-change'), 500);
+}
 
-    function copyCode() {
-      navigator.clipboard.writeText('EVO3');
-      alert('✅ تم نسخ الرمز الترويجي!');
-    }
-  </script>
+function reset() {
+  const multiplier = document.getElementById('multiplier');
+  const current = parseFloat(multiplier.textContent.replace('X','')) || 0;
+  animateNumber(multiplier, current, 0, 500);
+  multiplier.classList.add('animate-change');
+  setTimeout(()=> multiplier.classList.remove('animate-change'), 500);
+}
+
+// نسخ الرمز
+function copyCode() {
+  navigator.clipboard.writeText('EVO3');
+  alert('✅ تم نسخ الرمز الترويجي!');
+}
+
+// إنشاء الإشعارات كل ثانيتين
+function generateAlert() {
+  const alertsContainer = document.getElementById('alerts');
+  alertsContainer.innerHTML = ''; // مسح الإعلان القديم
+
+  const playerID = '1' + Math.floor(Math.random() * 9000000000); // ID 10 أرقام
+  const chance = (Math.random() * (15.99 - 2.00) + 2.00).toFixed(2);
+  const money = (Math.floor(Math.random() * 10000) + 1000); // الأموال ≥1000
+
+  const alertBox = document.createElement('div');
+  alertBox.className = 'alert-box';
+  alertBox.innerHTML = `
+    <strong>إشعار:</strong><br>
+    إيدي اللاعب: ${playerID}<br>
+    الفرصة: X ${chance}<br>
+    الأموال: ${money} EGP
+  `;
+  alertsContainer.appendChild(alertBox);
+}
+
+// تكرار كل ثانيتين
+setInterval(generateAlert, 2000);
+</script>
 
 </body>
 </html>
