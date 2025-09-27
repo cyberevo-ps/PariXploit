@@ -4,7 +4,6 @@
   <meta charset="UTF-8">
   <title>واجهة التوقع</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- خط Tajawal من Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
   <style>
     body {
@@ -34,6 +33,7 @@
       transition: all 0.3s ease-in-out;
     }
 
+    /* تأثير الرقم عند تغييره */
     .animate-change {
       animation: flash 0.5s ease-in-out;
     }
@@ -56,6 +56,13 @@
       position: relative;
       z-index: 1;
       color: white;
+      transition: transform 0.1s, box-shadow 0.1s;
+    }
+
+    /* تأثير الزر عند الضغط */
+    button:active {
+      transform: scale(0.95);
+      box-shadow: 0 0 10px #00ffff inset;
     }
 
     button::before {
@@ -94,9 +101,7 @@
       border-radius: 5px;
     }
 
-    a {
-      text-decoration: none;
-    }
+    a { text-decoration: none; }
   </style>
 </head>
 <body>
@@ -118,23 +123,35 @@
   </div>
 
   <script>
+    function animateNumber(element, start, end, duration) {
+      let startTime = null;
+      function step(currentTime) {
+        if (!startTime) startTime = currentTime;
+        const progress = Math.min((currentTime - startTime) / duration, 1);
+        const value = (start + (end - start) * progress).toFixed(2);
+        element.textContent = `X${value}`;
+        if (progress < 1) {
+          requestAnimationFrame(step);
+        }
+      }
+      requestAnimationFrame(step);
+    }
+
     function predict() {
-      const random = (Math.random() * (15.99 - 2.00) + 2.00).toFixed(2);
+      const random = (Math.random() * (15.99 - 2.00) + 2.00);
       const multiplier = document.getElementById('multiplier');
-      multiplier.textContent = `X${random}`;
+      const current = parseFloat(multiplier.textContent.replace('X','')) || 0;
+      animateNumber(multiplier, current, random, 500);
       multiplier.classList.add('animate-change');
-      setTimeout(() => {
-        multiplier.classList.remove('animate-change');
-      }, 500);
+      setTimeout(() => multiplier.classList.remove('animate-change'), 500);
     }
 
     function reset() {
       const multiplier = document.getElementById('multiplier');
-      multiplier.textContent = 'X0.00';
+      const current = parseFloat(multiplier.textContent.replace('X','')) || 0;
+      animateNumber(multiplier, current, 0, 500);
       multiplier.classList.add('animate-change');
-      setTimeout(() => {
-        multiplier.classList.remove('animate-change');
-      }, 500);
+      setTimeout(() => multiplier.classList.remove('animate-change'), 500);
     }
 
     function copyCode() {
