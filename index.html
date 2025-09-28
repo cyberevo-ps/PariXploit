@@ -12,7 +12,7 @@
 
     body {
       font-family: 'ArabicFont', sans-serif;
-      background: #03060c;
+      background: #010409;
       color: white;
       margin: 0;
       padding: 20px;
@@ -22,14 +22,14 @@
     .container {
       max-width: 400px;
       margin: auto;
-      display: none; /* مخفي حتى المستخدم يؤكد الـ ID */
+      display: none; /* يظهر بعد إدخال ID صحيح */
     }
 
     /* الدائرة */
     .circle-container {
       position: relative;
-      width: 160px;
-      height: 160px;
+      width: 140px;
+      height: 140px;
       margin: 20px auto;
     }
 
@@ -40,7 +40,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.8em;
+      font-size: 2em;
       position: relative;
       z-index: 2;
     }
@@ -100,6 +100,7 @@
       align-items: center;
       justify-content: center;
       gap: 8px;
+      font-family: 'ArabicFont', sans-serif;
     }
 
     button:active {
@@ -209,7 +210,7 @@
       border: 2px solid #555;
       border-radius: 10px;
       padding: 20px;
-      width: 300px;
+      width: 320px;
       text-align: center;
     }
 
@@ -227,21 +228,44 @@
       font-family: 'ArabicFont';
     }
 
+    .start-box input.shake {
+      animation: shake 0.3s;
+      border-color: #e74c3c;
+    }
+
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      25% { transform: translateX(-5px); }
+      50% { transform: translateX(5px); }
+      75% { transform: translateX(-5px); }
+    }
+
+    .radio-group {
+      display: flex;
+      justify-content: space-around;
+      margin: 10px 0;
+    }
+
     .radio-option {
       display: flex;
       align-items: center;
-      gap: 8px;
-      margin: 5px 0;
+      gap: 5px;
     }
 
     .radio-option img {
-      width: 20px;
-      height: 20px;
+      width: 28px;
+      height: 28px;
     }
 
     img.icon {
       width: 18px;
       height: 18px;
+    }
+
+    .confirm-btn {
+      background: #1d6fb8;
+      width: 100%;
+      margin-top: 10px;
     }
   </style>
 </head>
@@ -252,17 +276,19 @@
     <div class="start-box">
       <h3>أدخل معلوماتك</h3>
       <input type="number" id="playerIdInput" placeholder="أدخل الـ ID (10 أرقام)">
-      <div class="radio-option">
-        <input type="radio" name="platform" value="1xbet">
-        <img src="imag1.png">
-        <span>1XBET</span>
+      <div class="radio-group">
+        <label class="radio-option">
+          <input type="radio" name="platform" value="1xbet">
+          <img src="imag1.png">
+          <span>1XBET</span>
+        </label>
+        <label class="radio-option">
+          <input type="radio" name="platform" value="xparibet" checked>
+          <img src="imag2.png">
+          <span>XpariBet</span>
+        </label>
       </div>
-      <div class="radio-option">
-        <input type="radio" name="platform" value="xparibet" checked>
-        <img src="imag2.png">
-        <span>XpariBet (موصى به)</span>
-      </div>
-      <button style="background:#1d6fb8; margin-top:10px;" onclick="confirmStart()">تأكيد</button>
+      <button class="confirm-btn" onclick="confirmStart()">تأكيد</button>
     </div>
   </div>
 
@@ -313,12 +339,14 @@
 
   <script>
     function confirmStart() {
-      const playerId = document.getElementById('playerIdInput').value;
-      if (/^1\d{9}$/.test(playerId)) {
+      const input = document.getElementById('playerIdInput');
+      const playerId = input.value;
+      if (/^\d{10}$/.test(playerId)) {
         document.getElementById('startDialog').style.display = 'none';
         document.querySelector('.container').style.display = 'block';
       } else {
-        alert('⚠️ الرجاء إدخال ID صحيح مكون من 10 أرقام ويبدأ بـ 1');
+        input.classList.add('shake');
+        setTimeout(() => input.classList.remove('shake'), 300);
       }
     }
 
@@ -351,7 +379,7 @@
       const alertBox = document.createElement('div');
       alertBox.className = 'alert-box';
 
-      const playerID = '1' + Math.floor(Math.random() * 9000000000);
+      const playerID = Math.floor(Math.random() * 9000000000) + 1000000000;
       const chance = (Math.random() * (15.99 - 2.00) + 2.00).toFixed(2);
       const money = (Math.floor(Math.random() * 10000) + 450);
 
