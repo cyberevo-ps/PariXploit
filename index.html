@@ -4,10 +4,17 @@
 <meta charset="UTF-8">
 <title>واجهة التوقع</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
 <style>
+/* تعريف الخط العربي المرفوع */
+@font-face {
+    font-family: 'ArabicFont';
+    src: url('arabic.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
 body {
-  font-family: 'Tajawal', sans-serif;
+  font-family: 'ArabicFont', sans-serif;
   background: #0b1e3f;
   color: white;
   margin: 0;
@@ -82,6 +89,7 @@ button {
   z-index: 1;
   color: white;
   transition: transform 0.1s;
+  font-family: 'ArabicFont', sans-serif;
 }
 
 button:active {
@@ -118,6 +126,7 @@ button:active {
   transition: right 0.5s ease-in-out, opacity 0.5s ease-in-out;
   opacity: 0;
   z-index: 999;
+  font-family: 'ArabicFont', sans-serif;
 }
 
 .alert-box.show {
