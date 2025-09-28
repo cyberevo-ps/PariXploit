@@ -14,7 +14,7 @@
 
 body {
   font-family: 'ArabicFont', sans-serif;
-  background: #040811;
+  background: #03050a;
   color: white;
   margin: 0;
   padding: 20px;
@@ -53,24 +53,40 @@ body {
 .circle::before {
   border-top-color: #00ffff;
   border-right-color: #00ffff;
-  animation: spin1 2s linear infinite;
+  animation: spinClockwise 2s linear infinite;
 }
 
 .circle::after {
   border-bottom-color: #ff00ff;
   border-left-color: #ff00ff;
-  animation: spin2 3s linear infinite;
+  animation: spinCounter 4s linear infinite;
 }
 
-@keyframes spin1 { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-@keyframes spin2 { 0% { transform: rotate(360deg); } 100% { transform: rotate(0deg); } }
+@keyframes spinClockwise {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes spinCounter {
+  0% { transform: rotate(360deg); }
+  100% { transform: rotate(0deg); }
+}
 
 .animate-change {
   animation: flash 0.5s ease-in-out, pulse 0.5s ease-in-out;
 }
 
-@keyframes flash { 0% { transform: scale(1); color: #00ffff; } 50% { transform: scale(1.3); color: #fff200; } 100% { transform: scale(1); color: #ffffff; } }
-@keyframes pulse { 0% { box-shadow: 0 0 0 rgba(0,255,255,0.7); } 50% { box-shadow: 0 0 20px rgba(0,255,255,0.7); } 100% { box-shadow: 0 0 0 rgba(0,255,255,0.7); } }
+@keyframes flash { 
+  0% { transform: scale(1); color: #00ffff; } 
+  50% { transform: scale(1.3); color: #fff200; } 
+  100% { transform: scale(1); color: #ffffff; } 
+}
+
+@keyframes pulse { 
+  0% { box-shadow: 0 0 0 rgba(0,255,255,0.7); } 
+  50% { box-shadow: 0 0 20px rgba(0,255,255,0.7); } 
+  100% { box-shadow: 0 0 0 rgba(0,255,255,0.7); } 
+}
 
 .button-row { display: flex; justify-content: space-between; gap: 10px; margin: 10px 0; }
 
@@ -93,14 +109,13 @@ button {
 
 button:active { transform: scale(0.95); }
 
-.predict { background: #2ecc71; text-align: center; justify-content: center; }
-.reset { background: #e74c3c; text-align: center; justify-content: center; }
+.predict { background: #2ecc71; justify-content: center; }
+.reset { background: #e74c3c; justify-content: center; }
 .telegram { background: #3498db; width: 100%; font-weight: bold; font-size: 1.1em; justify-content: flex-start; }
 .promo { background: #333; width: 100%; font-weight: bold; font-size: 1.1em; justify-content: flex-start; }
 
 .promo-section { display: flex; flex-direction: column; gap: 10px; justify-content: center; align-items: center; margin: 10px 0; }
 
-/* مربع النص أصغر */
 .info-box {
   background: rgba(0,0,0,0.4);
   border: 2px solid #888;
@@ -108,7 +123,7 @@ button:active { transform: scale(0.95); }
   padding: 12px;
   margin-top: 10px;
   text-align: justify;
-  font-size: 0.9em; /* أصغر درجتين */
+  font-size: 0.9em;
   line-height: 1.4em;
   font-family: 'ArabicFont', sans-serif;
 }
@@ -134,6 +149,37 @@ button:active { transform: scale(0.95); }
 .alert-box.show { opacity: 1; transform: translateX(-50%) scale(1.05); }
 .alert-box.hide { opacity: 0; transform: translateX(-50%) scale(0.95); }
 
+.dialog-overlay {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.dialog-box {
+  background: #0a1a33;
+  border: 2px solid #888;
+  border-radius: 12px;
+  padding: 20px;
+  max-width: 300px;
+  text-align: center;
+  color: white;
+}
+
+.dialog-box h2 { margin: 0 0 10px; color: #00ffff; }
+.dialog-box p { margin: 0 0 15px; }
+.dialog-box button {
+  background: #3498db;
+  padding: 10px;
+  border-radius: 8px;
+  width: 100%;
+  justify-content: center;
+}
+
 button img { width: 24px; height: 24px; }
 </style>
 </head>
@@ -154,7 +200,6 @@ button img { width: 24px; height: 24px; }
     <button class="promo" onclick="copyCode()"><img src="files.png" alt="copy"> الرمز الترويجي: EVO3</button>
   </div>
 
-  <!-- مربع النص أصغر -->
   <div class="info-box">
     تم تصميم هذه الأداة لتحليل لعبة Crash على تطبيقات XpariBet و1xbet باستخدام البروموكود EVO3 🎯💥، لمساعدة اللاعبين على فهم الأنماط المحتملة واتخاذ قرارات أذكى أثناء اللعب 📊🎮. يمكنك الآن الانضمام إلى قناة التيليجرام بالزر بالأعلى 🔗📲، حظًا موفقًا لك 🍀!
   </div>
@@ -176,7 +221,14 @@ function animateNumber(element, start, end, duration) {
 }
 
 function predict() {
-  const random = Math.random() * (15.99 - 2.00) + 2.00;
+  const randomChance = Math.random();
+  let random;
+  if (randomChance < 0.25) {
+    random = Math.random() * (15.99 - 8.00) + 8.00; // 25٪ فوق 8
+  } else {
+    random = Math.random() * (7.99 - 2.00) + 2.00; // 75٪ تحت 8
+  }
+
   const multiplier = document.getElementById('multiplier');
   const current = parseFloat(multiplier.textContent.replace('X','')) || 0;
   animateNumber(multiplier, current, random, 500);
@@ -194,7 +246,19 @@ function reset() {
 
 function copyCode() {
   navigator.clipboard.writeText('EVO3');
-  alert('✅ تم نسخ الرمز الترويجي!');
+  
+  const overlay = document.createElement('div');
+  overlay.className = 'dialog-overlay';
+
+  overlay.innerHTML = `
+    <div class="dialog-box">
+      <h2>نجاح</h2>
+      <p>تم نسخ البروموكود!</p>
+      <button onclick="document.body.removeChild(this.parentNode.parentNode)">حسنا</button>
+    </div>
+  `;
+  
+  document.body.appendChild(overlay);
 }
 
 function generateAlert() {
