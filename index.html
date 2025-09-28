@@ -5,7 +5,6 @@
 <title>واجهة التوقع</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <style>
-/* الخط العربي */
 @font-face {
     font-family: 'ArabicFont';
     src: url('arabic.ttf') format('truetype');
@@ -29,21 +28,20 @@ body {
 }
 
 .circle {
-  width: 180px;
-  height: 180px;
+  width: 220px;
+  height: 220px;
   margin: 20px auto;
   border-radius: 50%;
   background: radial-gradient(circle, #00aaff, #004466);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 2em;
+  font-size: 2.5em;
   position: relative;
   transition: all 0.3s ease-in-out;
   color: #fff;
 }
 
-/* حواف متحركة دائماً */
 .circle::before {
   content: '';
   position: absolute;
@@ -60,14 +58,13 @@ body {
   100% { transform: rotate(360deg); }
 }
 
-/* تأثير الرقم عند تغييره + نبض */
 .animate-change {
   animation: flash 0.5s ease-in-out, pulse 0.5s ease-in-out;
 }
 
 @keyframes flash {
   0% { transform: scale(1); color: #00ffff; }
-  50% { transform: scale(1.2); color: #fff200; }
+  50% { transform: scale(1.3); color: #fff200; }
   100% { transform: scale(1); color: #ffffff; }
 }
 
@@ -98,7 +95,7 @@ button {
   font-family: 'ArabicFont', sans-serif;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   gap: 8px;
 }
 
@@ -108,8 +105,8 @@ button:active {
 
 .predict { background: #2ecc71; }
 .reset { background: #e74c3c; }
-.telegram { background: #3498db; width: 100%; font-weight: bold; }
-.promo { background: #333; width: 100%; font-weight: bold; }
+.telegram { background: #3498db; width: 100%; font-weight: bold; font-size: 1.1em; }
+.promo { background: #333; width: 100%; font-weight: bold; font-size: 1.1em; }
 
 .promo-section {
   display: flex;
@@ -122,33 +119,35 @@ button:active {
 
 .alert-box {
   position: fixed;
-  bottom: 20px;
-  right: -400px;
-  background: rgba(0,0,0,0.7);
-  padding: 10px 15px;
-  border-radius: 8px;
-  min-width: 250px;
-  transition: right 0.5s ease-in-out, opacity 0.5s ease-in-out;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(0,0,0,0.85);
+  padding: 15px 20px;
+  border-radius: 12px;
+  min-width: 280px;
+  transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
   opacity: 0;
   z-index: 999;
+  text-align: center;
   font-family: 'ArabicFont', sans-serif;
+  font-size: 1.1em;
 }
 
 .alert-box.show {
-  right: 20px;
   opacity: 1;
+  transform: translate(-50%, -50%) scale(1.1);
 }
 
 .alert-box.hide {
-  right: -400px;
   opacity: 0;
+  transform: translate(-50%, -50%) scale(0.8);
 }
 
 button img {
-  width: 20px;
-  height: 20px;
+  width: 24px;
+  height: 24px;
 }
-
 </style>
 </head>
 <body>
@@ -219,7 +218,7 @@ function generateAlert() {
     <strong>إشعار:</strong><br>
     إيدي اللاعب: ${playerID}<br>
     الفرصة: X ${chance}<br>
-    الأموال: ${money} EGP
+    الأموال: ${money} EGP ✅
   `;
   alertsContainer.appendChild(alertBox);
 
@@ -228,7 +227,9 @@ function generateAlert() {
   multiplier.classList.add('animate-change');
   setTimeout(()=> multiplier.classList.remove('animate-change'), 500);
 
+  // ظهور الاشعار
   setTimeout(()=> alertBox.classList.add('show'), 100);
+  // إخفاء بعد 5 ثواني
   setTimeout(()=>{
     alertBox.classList.remove('show');
     alertBox.classList.add('hide');
@@ -236,7 +237,6 @@ function generateAlert() {
   }, 4500);
 }
 
-// تكرار كل 5 ثواني
 setInterval(generateAlert, 5000);
 </script>
 
