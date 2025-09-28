@@ -93,20 +93,16 @@ button {
   color: white;
   transition: transform 0.1s;
   font-family: 'ArabicFont', sans-serif;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  gap: 8px;
 }
 
 button:active {
   transform: scale(0.95);
 }
 
-.predict { background: #2ecc71; }
-.reset { background: #e74c3c; }
-.telegram { background: #3498db; width: 100%; font-weight: bold; font-size: 1.1em; }
-.promo { background: #333; width: 100%; font-weight: bold; font-size: 1.1em; }
+.predict { background: #2ecc71; text-align: center; }
+.reset { background: #e74c3c; text-align: center; }
+.telegram { background: #3498db; width: 100%; font-weight: bold; font-size: 1.1em; display: flex; align-items: center; justify-content: flex-start; gap: 8px; }
+.promo { background: #333; width: 100%; font-weight: bold; font-size: 1.1em; display: flex; align-items: center; justify-content: flex-start; gap: 8px; }
 
 .promo-section {
   display: flex;
@@ -119,9 +115,9 @@ button:active {
 
 .alert-box {
   position: fixed;
-  top: 50%;
+  bottom: 20px;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translateX(-50%);
   background: rgba(0,0,0,0.85);
   padding: 15px 20px;
   border-radius: 12px;
@@ -136,12 +132,12 @@ button:active {
 
 .alert-box.show {
   opacity: 1;
-  transform: translate(-50%, -50%) scale(1.1);
+  transform: translateX(-50%) scale(1.05);
 }
 
 .alert-box.hide {
   opacity: 0;
-  transform: translate(-50%, -50%) scale(0.8);
+  transform: translateX(-50%) scale(0.95);
 }
 
 button img {
