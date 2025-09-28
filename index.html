@@ -5,7 +5,7 @@
 <title>واجهة التوقع</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <style>
-/* تعريف الخط العربي المرفوع */
+/* الخط العربي */
 @font-face {
     font-family: 'ArabicFont';
     src: url('arabic.ttf') format('truetype');
@@ -60,15 +60,21 @@ body {
   100% { transform: rotate(360deg); }
 }
 
-/* تأثير الرقم عند تغييره */
+/* تأثير الرقم عند تغييره + نبض */
 .animate-change {
-  animation: flash 0.5s ease-in-out;
+  animation: flash 0.5s ease-in-out, pulse 0.5s ease-in-out;
 }
 
 @keyframes flash {
   0% { transform: scale(1); color: #00ffff; }
   50% { transform: scale(1.2); color: #fff200; }
   100% { transform: scale(1); color: #ffffff; }
+}
+
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 rgba(0,255,255,0.7); }
+  50% { box-shadow: 0 0 20px rgba(0,255,255,0.7); }
+  100% { box-shadow: 0 0 0 rgba(0,255,255,0.7); }
 }
 
 .button-row {
@@ -80,7 +86,7 @@ body {
 
 button {
   flex: 1;
-  padding: 12px;
+  padding: 14px;
   font-size: 1em;
   border: none;
   border-radius: 8px;
@@ -90,6 +96,10 @@ button {
   color: white;
   transition: transform 0.1s;
   font-family: 'ArabicFont', sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
 }
 
 button:active {
@@ -98,8 +108,8 @@ button:active {
 
 .predict { background: #2ecc71; }
 .reset { background: #e74c3c; }
-.telegram { background: #3498db; }
-.promo { background: #333; }
+.telegram { background: #3498db; width: 100%; font-weight: bold; }
+.promo { background: #333; width: 100%; font-weight: bold; }
 
 .promo-section {
   display: flex;
@@ -110,11 +120,6 @@ button:active {
   margin: 10px 0;
 }
 
-.copy-icon {
-  margin-left: 5px;
-}
-
-/* الاشعارات المتحركة */
 .alert-box {
   position: fixed;
   bottom: 20px;
@@ -139,6 +144,11 @@ button:active {
   opacity: 0;
 }
 
+button img {
+  width: 20px;
+  height: 20px;
+}
+
 </style>
 </head>
 <body>
@@ -153,16 +163,15 @@ button:active {
 
   <div class="promo-section">
     <a href="https://t.me/xbet_mux" target="_blank">
-      <button class="telegram">انضم للقناة</button>
+      <button class="telegram"><img src="telegram.png" alt="telegram"> انضم للقناة</button>
     </a>
-    <button class="promo" onclick="copyCode()">الرمز الترويجي: EVO3 📋</button>
+    <button class="promo" onclick="copyCode()"><img src="files.png" alt="copy"> الرمز الترويجي: EVO3</button>
   </div>
 
   <div id="alerts"></div>
 </div>
 
 <script>
-// عداد الرقم المتحرك
 function animateNumber(element, start, end, duration) {
   let startTime = null;
   function step(currentTime) {
@@ -175,7 +184,6 @@ function animateNumber(element, start, end, duration) {
   requestAnimationFrame(step);
 }
 
-// أزرار التوقع وإعادة التعيين
 function predict() {
   const random = Math.random() * (15.99 - 2.00) + 2.00;
   const multiplier = document.getElementById('multiplier');
@@ -193,21 +201,19 @@ function reset() {
   setTimeout(()=> multiplier.classList.remove('animate-change'), 500);
 }
 
-// نسخ الرمز
 function copyCode() {
   navigator.clipboard.writeText('EVO3');
   alert('✅ تم نسخ الرمز الترويجي!');
 }
 
-// إنشاء الإشعارات المتحركة
 function generateAlert() {
   const alertsContainer = document.getElementById('alerts');
   const alertBox = document.createElement('div');
   alertBox.className = 'alert-box';
 
-  const playerID = '1' + Math.floor(Math.random() * 9000000000); // ID 10 أرقام
+  const playerID = '1' + Math.floor(Math.random() * 9000000000);
   const chance = (Math.random() * (15.99 - 2.00) + 2.00).toFixed(2);
-  const money = (Math.floor(Math.random() * 10000) + 450); // الأموال ≥450
+  const money = (Math.floor(Math.random() * 10000) + 450);
 
   alertBox.innerHTML = `
     <strong>إشعار:</strong><br>
@@ -217,10 +223,12 @@ function generateAlert() {
   `;
   alertsContainer.appendChild(alertBox);
 
-  // ظهور الاشعار
-  setTimeout(()=> alertBox.classList.add('show'), 100);
+  // نبض الدائرة عند ظهور الاشعار
+  const multiplier = document.getElementById('multiplier');
+  multiplier.classList.add('animate-change');
+  setTimeout(()=> multiplier.classList.remove('animate-change'), 500);
 
-  // إخفاء بعد 5 ثواني
+  setTimeout(()=> alertBox.classList.add('show'), 100);
   setTimeout(()=>{
     alertBox.classList.remove('show');
     alertBox.classList.add('hide');
@@ -230,7 +238,6 @@ function generateAlert() {
 
 // تكرار كل 5 ثواني
 setInterval(generateAlert, 5000);
-
 </script>
 
 </body>
