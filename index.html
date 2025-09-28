@@ -14,7 +14,7 @@
 
 body {
   font-family: 'ArabicFont', sans-serif;
-  background: #040811; /* داكن أكثر */
+  background: #040811;
   color: white;
   margin: 0;
   padding: 20px;
@@ -28,21 +28,20 @@ body {
 }
 
 .circle {
-  width: 220px;
-  height: 220px;
+  width: 160px;      /* حجم أصغر */
+  height: 160px;
   margin: 20px auto;
   border-radius: 50%;
-  background: transparent; /* بدون خلفية */
+  background: transparent;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 2.5em;
+  font-size: 2em;    
   position: relative;
   transition: all 0.3s ease-in-out;
   color: #fff;
 }
 
-/* خطوط متحركة: خطين بلون مختلف */
 .circle::before, .circle::after {
   content: '';
   position: absolute;
@@ -117,8 +116,20 @@ button:active { transform: scale(0.95); }
 
 .predict { background: #2ecc71; text-align: center; justify-content: center; }
 .reset { background: #e74c3c; text-align: center; justify-content: center; }
-.telegram { background: #3498db; width: 100%; font-weight: bold; font-size: 1.1em; justify-content: flex-start; }
-.promo { background: #333; width: 100%; font-weight: bold; font-size: 1.1em; justify-content: flex-start; }
+.telegram { 
+  background: #3498db; 
+  width: 100%; 
+  font-weight: bold; 
+  font-size: 1.1em; 
+  justify-content: flex-start; 
+}
+.promo { 
+  background: #333; 
+  width: 100%; 
+  font-weight: bold; 
+  font-size: 1.1em; 
+  justify-content: flex-start; 
+}
 
 .promo-section {
   display: flex;
@@ -135,6 +146,7 @@ button:active { transform: scale(0.95); }
   left: 50%;
   transform: translateX(-50%);
   background: rgba(0,0,0,0.85);
+  border: 2px solid #888; /* حواف رمادية */
   padding: 15px 20px;
   border-radius: 12px;
   min-width: 280px;
@@ -233,10 +245,10 @@ function generateAlert() {
     alertBox.classList.remove('show');
     alertBox.classList.add('hide');
     setTimeout(()=> alertsContainer.removeChild(alertBox), 500);
-  }, 4500);
+  }, 12000); // الإعلان يظهر 12 ثانية
 }
 
-setInterval(generateAlert, 5000);
+setInterval(generateAlert, 12000); // يرسل إعلان جديد كل 12 ثانية
 </script>
 
 </body>
