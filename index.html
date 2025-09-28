@@ -25,6 +25,24 @@
       display: none; /* يظهر بعد إدخال ID صحيح */
     }
 
+    /* شريط ID والأونلاين */
+    .user-info {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-size: 0.9em;
+      margin-bottom: 10px;
+    }
+
+    .online-dot {
+      width: 10px;
+      height: 10px;
+      background: #2ecc71;
+      border-radius: 50%;
+      box-shadow: 0 0 5px #2ecc71;
+    }
+
     /* الدائرة */
     .circle-container {
       position: relative;
@@ -276,6 +294,11 @@
     <div class="start-box">
       <h3>أدخل معلوماتك</h3>
       <input type="number" id="playerIdInput" placeholder="أدخل الـ ID (10 أرقام)">
+      <!-- زر البروموكود -->
+      <button class="promo" style="margin:10px auto;" onclick="copyCode()">
+        <img src="files.png" class="icon">
+        الرمز الترويجي: EVO3
+      </button>
       <div class="radio-group">
         <label class="radio-option">
           <input type="radio" name="platform" value="1xbet">
@@ -293,6 +316,12 @@
   </div>
 
   <div class="container">
+    <!-- شريط الايدي والاونلاين -->
+    <div class="user-info">
+      <span id="userIdDisplay">ID: --------</span>
+      <div class="online-dot"></div>
+    </div>
+
     <!-- الدائرة -->
     <div class="circle-container">
       <div class="ring ring1"></div>
@@ -338,10 +367,14 @@
   <audio id="alertSound" src="https://actions.google.com/sounds/v1/alarms/beep_short.ogg" preload="auto"></audio>
 
   <script>
+    let currentID = null;
+
     function confirmStart() {
       const input = document.getElementById('playerIdInput');
       const playerId = input.value;
       if (/^\d{10}$/.test(playerId)) {
+        currentID = playerId;
+        document.getElementById('userIdDisplay').textContent = `ID: ${playerId}`;
         document.getElementById('startDialog').style.display = 'none';
         document.querySelector('.container').style.display = 'block';
       } else {
@@ -357,8 +390,7 @@
       } else {
         random = (Math.random() * (7.99 - 2.00) + 2.00).toFixed(2);
       }
-      const multiplier = document.getElementById('multiplier');
-      multiplier.textContent = `X${random}`;
+      document.getElementById('multiplier').textContent = `X${random}`;
     }
 
     function reset() {
