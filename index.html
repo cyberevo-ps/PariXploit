@@ -28,7 +28,7 @@ body {
 }
 
 .circle {
-  width: 160px;      /* حجم أصغر */
+  width: 160px;
   height: 160px;
   margin: 20px auto;
   border-radius: 50%;
@@ -36,7 +36,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 2em;    
+  font-size: 2em;
   position: relative;
   transition: all 0.3s ease-in-out;
   color: #fff;
@@ -140,13 +140,26 @@ button:active { transform: scale(0.95); }
   margin: 10px 0;
 }
 
+/* مربع النص أسفل الأزرار وفوق الإعلانات */
+.info-box {
+  background: rgba(0,0,0,0.4);  /* شفاف */
+  border: 2px solid #888;       /* حواف رمادية */
+  border-radius: 12px;
+  padding: 15px;
+  margin-top: 10px;
+  text-align: justify;
+  font-size: 1em;
+  line-height: 1.5em;
+  font-family: 'ArabicFont', sans-serif;
+}
+
 .alert-box {
   position: fixed;
   bottom: 20px;
   left: 50%;
   transform: translateX(-50%);
   background: rgba(0,0,0,0.85);
-  border: 2px solid #888; /* حواف رمادية */
+  border: 2px solid #888;
   padding: 15px 20px;
   border-radius: 12px;
   min-width: 280px;
@@ -179,6 +192,11 @@ button img { width: 24px; height: 24px; }
       <button class="telegram"><img src="telegram.png" alt="telegram"> انضم للقناة</button>
     </a>
     <button class="promo" onclick="copyCode()"><img src="files.png" alt="copy"> الرمز الترويجي: EVO3</button>
+  </div>
+
+  <!-- مربع النص الجديد -->
+  <div class="info-box">
+    تم تصميم هذه الأداة لتحليل لعبة Crash على تطبيقات XpariBet و1xbet باستخدام البروموكود EVO3 🎯💥، لمساعدة اللاعبين على فهم الأنماط المحتملة واتخاذ قرارات أذكى أثناء اللعب 📊🎮. يمكنك الآن الانضمام إلى قناة التيليجرام بالزر بالأعلى 🔗📲، حظًا موفقًا لك 🍀!
   </div>
 
   <div id="alerts"></div>
