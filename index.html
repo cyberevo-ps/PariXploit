@@ -6,9 +6,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <style>
 @font-face { font-family:'ArabicFont'; src:url('arabic.ttf') format('truetype'); }
-body { font-family:'ArabicFont',sans-serif; background:#0a0f1f; color:white; margin:0; padding:0; display:flex; flex-direction:column; align-items:center; justify-content:flex-start; min-height:100vh; }
+body { font-family:'ArabicFont',sans-serif; background:#0a0f1f; color:white; margin:0; padding:0; display:flex; flex-direction:column; align-items:center; justify-content:center; min-height:100vh; }
 .hidden { display:none; }
-.dialog { background:#0d1b2a; border:2px solid #555; border-radius:12px; padding:12px; width:85%; max-width:350px; text-align:center; animation:fadeIn 0.5s ease; margin-top:20px; }
+.dialog { background:#0d1b2a; border:2px solid #555; border-radius:12px; padding:12px; width:85%; max-width:350px; text-align:center; animation:fadeIn 0.5s ease; }
 @keyframes fadeIn { from{opacity:0;transform:scale(0.9);} to{opacity:1;transform:scale(1);} }
 .dialog img { width:130px; margin-bottom:8px; }
 .title { font-size:2.3em; font-weight:bold; background:linear-gradient(90deg,#00ffff,#ff00ff,#ffff00); background-size:200% 200%; -webkit-background-clip:text; -webkit-text-fill-color:transparent; animation:gradientShift 3s infinite alternate; margin-bottom:5px; }
@@ -23,11 +23,11 @@ input { font-family:'ArabicFont',sans-serif; width:90%; padding:10px; font-size:
 button { font-family:'ArabicFont',sans-serif; width:90%; padding:12px; font-size:1em; border:none; border-radius:8px; cursor:pointer; margin-top:6px; transition:transform 0.1s ease; }
 button:active { transform:scale(0.95); }
 .confirm { background:#3498db; color:white; }
-.promo-main { background:#1d6fb8; display:flex; align-items:center; justify-content:center; gap:5px; font-size:0.85em; border-radius:8px; margin:6px auto; padding:6px; }
+.promo-main { background:#1d6fb8; display:flex; align-items:center; justify-content:center; gap:5px; font-size:0.9em; border-radius:8px; margin:6px auto; padding:6px; }
 .promo-main img { width:18px; height:18px; }
 .alert-dialog { background:#0d1b2a; border:2px solid gray; border-radius:10px; padding:12px; text-align:center; position:fixed; top:50%; left:50%; transform:translate(-50%,-50%); display:none; z-index:1000; }
 .alert-dialog button { background:#3498db; color:white; margin-top:8px; padding:6px 12px; border-radius:6px; cursor:pointer; }
-#app { width:100%; max-width:400px; text-align:center; display:flex; flex-direction:column; align-items:center; }
+#app { width:100%; max-width:400px; text-align:center; }
 .top-info { display:flex; align-items:center; justify-content:flex-end; gap:6px; margin:10px; font-size:1em; }
 .status-circle { width:10px; height:10px; background:limegreen; border-radius:50%; }
 .circle-container { position:relative; width:130px; height:130px; margin:10px auto; }
@@ -75,36 +75,27 @@ button:active { transform:scale(0.95); }
 
 <!-- صفحة التوقع -->
 <div id="app" class="hidden">
-  <!-- الأعلى: ID والمنصة -->
   <div class="top-info">
     <span id="userInfo"></span>
     <img id="platformIcon" src="" width="20">
     <div class="status-circle"></div>
   </div>
-  
-  <!-- الوسط: دائرة التوقع -->
   <div class="circle-container">
     <div class="ring1"></div>
     <div class="ring2"></div>
     <div class="circle" id="multiplier">X0.00</div>
   </div>
-  
-  <!-- أسفل الدائرة: الأزرار -->
   <div class="buttons">
     <button class="predict" onclick="predict()">عرض التوقع</button>
     <button class="reset" onclick="reset()">إعادة تعيين</button>
   </div>
-  
   <a href="https://t.me/xbet_mux" target="_blank">
     <button class="telegram"><img src="telegram.png">انضم للقناة</button>
   </a>
-  
   <div class="promo-main" onclick="copyCode()"><img src="files.png"> الرمز الترويجي: EVO3</div>
-  
   <div class="info-box">
     تم تصميم هذه الأداة لتحليل لعبة Crash على تطبيقات XpariBet و1xbet باستخدام البروموكود EVO3 🎯💥، لمساعدة اللاعبين على فهم الأنماط المحتملة واتخاذ قرارات أذكى أثناء اللعب 📊🎮. يمكنك الآن الانضمام إلى قناة التيليجرام بالزر بالأعلى 🔗📲، حظًا موفقًا لك 🍀!
   </div>
-  
   <div id="alerts"></div>
 </div>
 
@@ -136,7 +127,6 @@ function predict(){
 }
 
 function reset(){ document.getElementById('multiplier').textContent="X0.00"; }
-
 function copyCode(){ navigator.clipboard.writeText('EVO3'); showAlert("✅ تم نسخ البروموكود!"); }
 
 function generateAlert(){
