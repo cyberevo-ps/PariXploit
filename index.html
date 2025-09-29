@@ -2,7 +2,7 @@
 <html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8">
-  <title>واجهة التوقع</title>
+  <title>WOLF CRASH</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     @font-face {
@@ -17,15 +17,138 @@
       margin: 0;
       padding: 20px;
       text-align: center;
+      overflow-x: hidden;
     }
 
+    /* انميشن اسم الاداة */
+    .app-title {
+      font-size: 2em;
+      font-weight: bold;
+      background: linear-gradient(90deg, #00aaff, #ff00ff, #2ecc71);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: rainbow 3s linear infinite;
+      margin-bottom: 5px;
+    }
+
+    @keyframes rainbow {
+      0% {background-position:0% 50%;}
+      50% {background-position:100% 50%;}
+      100% {background-position:0% 50%;}
+    }
+
+    .start-dialog {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 2000;
+    }
+
+    .start-box {
+      background: #0b2540;
+      border: 2px solid #555;
+      border-radius: 10px;
+      padding: 20px;
+      width: 340px;
+      text-align: center;
+    }
+
+    .start-box h3 {
+      margin-bottom: 10px;
+    }
+
+    .start-box input {
+      width: 90%;
+      padding: 8px;
+      margin: 10px 0;
+      border-radius: 6px;
+      border: 1px solid #555;
+      text-align: center;
+      font-family: 'ArabicFont';
+    }
+
+    .start-box input.shake {
+      animation: shake 0.3s;
+      border-color: #e74c3c;
+    }
+
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      25% { transform: translateX(-5px); }
+      50% { transform: translateX(5px); }
+      75% { transform: translateX(-5px); }
+    }
+
+    .radio-group {
+      display: flex;
+      justify-content: space-around;
+      margin: 10px 0;
+    }
+
+    .radio-option {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .radio-option img {
+      width: 28px;
+      height: 28px;
+    }
+
+    button {
+      flex: 1;
+      padding: 12px;
+      font-size: 1em;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      color: white;
+      transition: transform 0.2s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-family: 'ArabicFont', sans-serif;
+    }
+
+    button:active {
+      transform: scale(0.95);
+    }
+
+    .confirm-btn {
+      background: #1d6fb8;
+      width: 100%;
+      margin-top: 10px;
+    }
+
+    .promo {
+      background: #333;
+      width: 100%;
+      margin: 10px 0;
+    }
+
+    .promo img { width:18px; height:18px; }
+
+    .conditions {
+      font-size: 0.8em;
+      color: #aaa;
+      text-align: left;
+      margin-top: 5px;
+      line-height: 1.4em;
+    }
+
+    /* الصفحة الرئيسية */
     .container {
       max-width: 400px;
       margin: auto;
-      display: none; /* يظهر بعد إدخال ID صحيح */
+      display: none;
     }
 
-    /* شريط ID والأونلاين */
     .user-info {
       display: flex;
       align-items: center;
@@ -43,7 +166,6 @@
       box-shadow: 0 0 5px #2ecc71;
     }
 
-    /* الدائرة */
     .circle-container {
       position: relative;
       width: 140px;
@@ -91,13 +213,11 @@
       from { transform: rotate(0deg); }
       to { transform: rotate(360deg); }
     }
-
     @keyframes spinReverse {
       from { transform: rotate(0deg); }
       to { transform: rotate(-360deg); }
     }
 
-    /* الأزرار */
     .buttons {
       display: flex;
       justify-content: space-between;
@@ -105,35 +225,13 @@
       margin-bottom: 10px;
     }
 
-    button {
-      flex: 1;
-      padding: 12px;
-      font-size: 1em;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      color: white;
-      transition: transform 0.2s ease;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      font-family: 'ArabicFont', sans-serif;
-    }
-
-    button:active {
-      transform: scale(0.95);
-    }
-
     .predict { background: #2ecc71; }
     .reset { background: #e74c3c; }
-    .telegram, .promo { 
+    .telegram, .promo-main { 
       background: #1d6fb8;
       width: 100%;
       margin-top: 10px;
     }
-
-    .promo { background: #333; }
 
     .info-box {
       margin: 15px 0;
@@ -145,7 +243,6 @@
       line-height: 1.5em;
     }
 
-    /* الإشعارات */
     #alerts {
       position: fixed;
       bottom: 15px;
@@ -182,7 +279,6 @@
       box-shadow: 0 0 20px rgba(0,0,0,0);
     }
 
-    /* ديالوج البروموكود */
     .dialog {
       position: fixed;
       top: 50%;
@@ -205,85 +301,21 @@
       animation: bounceIn 0.3s ease;
     }
 
+    .dialog button {
+      background: #1d6fb8;
+      padding: 8px 15px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      color: white;
+      font-family: 'ArabicFont';
+      margin-top: 10px;
+    }
+
     @keyframes bounceIn {
       0% { transform: translate(-50%, -50%) scale(0.7); }
       50% { transform: translate(-50%, -50%) scale(1.05); }
       100% { transform: translate(-50%, -50%) scale(1); }
-    }
-
-    /* ديالوج البداية */
-    .start-dialog {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: rgba(0, 0, 0, 0.8);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 2000;
-    }
-
-    .start-box {
-      background: #0b2540;
-      border: 2px solid #555;
-      border-radius: 10px;
-      padding: 20px;
-      width: 320px;
-      text-align: center;
-    }
-
-    .start-box h3 {
-      margin-bottom: 10px;
-    }
-
-    .start-box input {
-      width: 90%;
-      padding: 8px;
-      margin: 10px 0;
-      border-radius: 6px;
-      border: 1px solid #555;
-      text-align: center;
-      font-family: 'ArabicFont';
-    }
-
-    .start-box input.shake {
-      animation: shake 0.3s;
-      border-color: #e74c3c;
-    }
-
-    @keyframes shake {
-      0%, 100% { transform: translateX(0); }
-      25% { transform: translateX(-5px); }
-      50% { transform: translateX(5px); }
-      75% { transform: translateX(-5px); }
-    }
-
-    .radio-group {
-      display: flex;
-      justify-content: space-around;
-      margin: 10px 0;
-    }
-
-    .radio-option {
-      display: flex;
-      align-items: center;
-      gap: 5px;
-    }
-
-    .radio-option img {
-      width: 28px;
-      height: 28px;
-    }
-
-    img.icon {
-      width: 18px;
-      height: 18px;
-    }
-
-    .confirm-btn {
-      background: #1d6fb8;
-      width: 100%;
-      margin-top: 10px;
     }
   </style>
 </head>
@@ -292,13 +324,16 @@
   <!-- ديالوج البداية -->
   <div class="start-dialog" id="startDialog">
     <div class="start-box">
+      <div class="app-title">WOLF CRASH</div>
       <h3>أدخل معلوماتك</h3>
       <input type="number" id="playerIdInput" placeholder="أدخل الـ ID (10 أرقام)">
+
       <!-- زر البروموكود -->
-      <button class="promo" style="margin:10px auto;" onclick="copyCode()">
+      <button class="promo" onclick="copyCode()">
         <img src="files.png" class="icon">
         الرمز الترويجي: EVO3
       </button>
+
       <div class="radio-group">
         <label class="radio-option">
           <input type="radio" name="platform" value="1xbet">
@@ -311,49 +346,51 @@
           <span>XpariBet</span>
         </label>
       </div>
+
+      <div class="conditions">
+        شروط تشغيل اداة Wold Crash : <br>
+        1-التسجيل بالبروموكود EVO3<br>
+        2-ايداع 3 دولار او 150 جنيه مصري فما فوق<br>
+        3-العب مندون طمع
+      </div>
+
       <button class="confirm-btn" onclick="confirmStart()">تأكيد</button>
     </div>
   </div>
 
+  <!-- الصفحة الرئيسية -->
   <div class="container">
-    <!-- شريط الايدي والاونلاين -->
     <div class="user-info">
       <span id="userIdDisplay">ID: --------</span>
       <div class="online-dot"></div>
     </div>
 
-    <!-- الدائرة -->
     <div class="circle-container">
       <div class="ring ring1"></div>
       <div class="ring ring2"></div>
       <div class="circle" id="multiplier">X0.00</div>
     </div>
 
-    <!-- الأزرار -->
     <div class="buttons">
       <button class="predict" onclick="predict()">عرض التوقع</button>
       <button class="reset" onclick="reset()">إعادة تعيين</button>
     </div>
 
-    <!-- زر القناة -->
     <button class="telegram">
       <img src="telegram.png" class="icon">
       انضم للقناة
     </button>
 
-    <!-- زر البروموكود -->
-    <button class="promo" onclick="copyCode()">
+    <button class="promo-main" onclick="copyCode()">
       <img src="files.png" class="icon">
       الرمز الترويجي: EVO3
     </button>
 
-    <!-- مربع المعلومات -->
     <div class="info-box">
       تم تصميم هذه الأداة لتحليل لعبة Crash على تطبيقات XpariBet و1xbet باستخدام البروموكود EVO3 🎯💥، لمساعدة اللاعبين على فهم الأنماط المحتملة واتخاذ قرارات أذكى أثناء اللعب 📊🎮. يمكنك الآن الانضمام إلى قناة التيليجرام بالزر بالأعلى 🔗📲، حظًا موفقًا لك 🍀!
     </div>
   </div>
 
-  <!-- الإشعارات -->
   <div id="alerts"></div>
 
   <!-- ديالوج البروموكود -->
@@ -363,7 +400,6 @@
     <button onclick="closeDialog()">حسنا</button>
   </div>
 
-  <!-- صوت تنبيه -->
   <audio id="alertSound" src="https://actions.google.com/sounds/v1/alarms/beep_short.ogg" preload="auto"></audio>
 
   <script>
