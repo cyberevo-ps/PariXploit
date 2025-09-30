@@ -6,9 +6,19 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <style>
 @font-face { font-family:'ArabicFont'; src:url('arabic.ttf') format('truetype'); }
-body { font-family:'ArabicFont',sans-serif; background:#0a0f1f; color:white; margin:0; padding:0; display:flex; flex-direction:column; align-items:center; justify-content:center; min-height:100vh; }
+body { 
+  font-family:'ArabicFont',sans-serif; 
+  background:#0a0f1f; 
+  color:white; 
+  margin:0; 
+  padding:0; 
+  display:flex; 
+  flex-direction:column; 
+  align-items:center;
+  min-height:100vh; 
+}
 .hidden { display:none; }
-.dialog { background:#0d1b2a; border:2px solid #555; border-radius:12px; padding:12px; width:85%; max-width:350px; text-align:center; animation:fadeIn 0.5s ease; }
+.dialog { background:#0d1b2a; border:2px solid #555; border-radius:12px; padding:12px; width:85%; max-width:350px; text-align:center; animation:fadeIn 0.5s ease; margin-top:40px; }
 @keyframes fadeIn { from{opacity:0;transform:scale(0.9);} to{opacity:1;transform:scale(1);} }
 .dialog img { width:130px; margin-bottom:8px; }
 .title { font-size:2.3em; font-weight:bold; background:linear-gradient(90deg,#00ffff,#ff00ff,#ffff00); background-size:200% 200%; -webkit-background-clip:text; -webkit-text-fill-color:transparent; animation:gradientShift 3s infinite alternate; margin-bottom:5px; }
@@ -20,6 +30,9 @@ input { font-family:'ArabicFont',sans-serif; width:90%; padding:10px; font-size:
 .platforms { display:flex; justify-content:center; gap:10px; margin-bottom:10px; }
 .platforms label { display:flex; align-items:center; gap:5px; cursor:pointer; background:#1b263b; padding:5px 10px; border-radius:6px; }
 .platforms img { width:25px; height:25px; }
+.country-select { display:flex; justify-content:center; gap:10px; margin-bottom:10px; }
+.country-select img { width:30px; height:20px; border-radius:3px; cursor:pointer; border:2px solid transparent; transition:0.2s; }
+.country-select img.selected { border-color:#00ffff; transform:scale(1.1); }
 button { font-family:'ArabicFont',sans-serif; width:90%; padding:12px; font-size:1em; border:none; border-radius:8px; cursor:pointer; margin-top:6px; transition:transform 0.1s ease; }
 button:active { transform:scale(0.95); }
 .confirm { background:#3498db; color:white; }
@@ -27,8 +40,9 @@ button:active { transform:scale(0.95); }
 .promo-main img { width:18px; height:18px; }
 .alert-dialog { background:#0d1b2a; border:2px solid gray; border-radius:10px; padding:12px; text-align:center; position:fixed; top:50%; left:50%; transform:translate(-50%,-50%); display:none; z-index:1000; }
 .alert-dialog button { background:#3498db; color:white; margin-top:8px; padding:6px 12px; border-radius:6px; cursor:pointer; }
-#app { width:100%; max-width:400px; text-align:center; }
+#app { width:100%; max-width:400px; text-align:center; margin-top:10px; }
 .top-info { display:flex; align-items:center; justify-content:flex-end; gap:6px; margin:10px; font-size:1em; }
+.top-info img.flag { width:22px; height:15px; border-radius:3px; }
 .status-circle { width:10px; height:10px; background:limegreen; border-radius:50%; }
 .circle-container { position:relative; width:130px; height:130px; margin:10px auto; }
 .circle { width:100%; height:100%; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:1.8em; border:3px solid #00ffff; position:relative; z-index:2; }
@@ -51,7 +65,6 @@ button:active { transform:scale(0.95); }
 </style>
 </head>
 <body>
-<!-- ديالوج إدخال -->
 <div class="dialog" id="startDialog">
   <img src="ela.png" alt="Logo">
   <div class="title">WOLF CRASH</div>
@@ -60,6 +73,15 @@ button:active { transform:scale(0.95); }
     شروط تشغيل اداة WOLF CRASH:<br>1- التسجيل بالبروموكود EVO3<br>2- ايداع 3 دولار او 150 جنيه مصري فما فوق<br>3- العب بدون طمع
   </div>
   <input type="number" id="userId" placeholder="ادخل الايدي المكون من 10 أرقام">
+
+  <!-- اختيار الدولة -->
+  <div class="country-select" id="countrySelect">
+    <img src="eg.png" data-country="eg" alt="مصر">
+    <img src="ma.png" data-country="ma" alt="المغرب">
+    <img src="dz.png" data-country="dz" alt="الجزائر">
+    <img src="sa.png" data-country="sa" alt="السعودية">
+  </div>
+
   <div class="platforms">
     <label><input type="radio" name="platform" value="1xbet"><img src="imag1.png">1xbet</label>
     <label><input type="radio" name="platform" value="XpariBet"><img src="imag2.png">XpariBet</label>
@@ -73,10 +95,10 @@ button:active { transform:scale(0.95); }
   <button onclick="closeAlert()">حسنا</button>
 </div>
 
-<!-- صفحة التوقع -->
 <div id="app" class="hidden">
   <div class="top-info">
     <span id="userInfo"></span>
+    <img id="countryFlag" class="flag" src="" alt="علم">
     <img id="platformIcon" src="" width="20">
     <div class="status-circle"></div>
   </div>
@@ -100,15 +122,27 @@ button:active { transform:scale(0.95); }
 </div>
 
 <script>
+let selectedCountry="";
+
+document.querySelectorAll('#countrySelect img').forEach(img=>{
+  img.addEventListener('click',()=>{
+    document.querySelectorAll('#countrySelect img').forEach(i=>i.classList.remove('selected'));
+    img.classList.add('selected');
+    selectedCountry=img.getAttribute('src');
+  });
+});
+
 function goToApp(){
   const id=document.getElementById('userId').value;
   const platform=document.querySelector('input[name="platform"]:checked');
   if(id.length!==10){ showAlert("الرجاء إدخال ID مكون من 10 أرقام"); return; }
   if(!platform){ showAlert("الرجاء اختيار المنصة"); return; }
+  if(!selectedCountry){ showAlert("الرجاء اختيار علم الدولة"); return; }
   document.getElementById('startDialog').classList.add('hidden');
   document.getElementById('app').classList.remove('hidden');
   document.getElementById('userInfo').textContent="ID: "+id;
   document.getElementById('platformIcon').src=platform.value==="1xbet"?"imag1.png":"imag2.png";
+  document.getElementById('countryFlag').src=selectedCountry;
   setInterval(generateAlert,12000);
 }
 
@@ -120,10 +154,15 @@ function showAlert(message){
 function closeAlert(){ document.getElementById('alertDialog').style.display='none'; }
 
 function predict(){
+  if(navigator.vibrate){ navigator.vibrate(200); }
   const multiplier=document.getElementById('multiplier');
   const random=Math.random()<0.25?(Math.random()*(15.99-8)+8):(Math.random()*(7.99-2)+2);
   let current=0; const target=parseFloat(random); const step=target/30;
-  const interval=setInterval(()=>{ current+=step; if(current>=target){ current=target; clearInterval(interval); } multiplier.textContent="X"+current.toFixed(2); },50);
+  const interval=setInterval(()=>{ 
+    current+=step; 
+    if(current>=target){ current=target; clearInterval(interval); } 
+    multiplier.textContent="X"+current.toFixed(2); 
+  },50);
 }
 
 function reset(){ document.getElementById('multiplier').textContent="X0.00"; }
