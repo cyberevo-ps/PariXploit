@@ -31,7 +31,7 @@ input { font-family:'ArabicFont',sans-serif; width:90%; padding:10px; font-size:
 .platforms label { display:flex; align-items:center; gap:5px; cursor:pointer; background:#1b263b; padding:5px 10px; border-radius:6px; }
 .platforms img { width:25px; height:25px; }
 .country-select { display:flex; justify-content:center; gap:10px; margin-bottom:10px; }
-.country-select img { width:30px; height:20px; border-radius:3px; cursor:pointer; border:2px solid transparent; transition:0.2s; }
+.country-select img { width:32px; height:22px; border-radius:3px; cursor:pointer; border:2px solid transparent; transition:0.2s; }
 .country-select img.selected { border-color:#00ffff; transform:scale(1.1); }
 button { font-family:'ArabicFont',sans-serif; width:90%; padding:12px; font-size:1em; border:none; border-radius:8px; cursor:pointer; margin-top:6px; transition:transform 0.1s ease; }
 button:active { transform:scale(0.95); }
@@ -42,7 +42,7 @@ button:active { transform:scale(0.95); }
 .alert-dialog button { background:#3498db; color:white; margin-top:8px; padding:6px 12px; border-radius:6px; cursor:pointer; }
 #app { width:100%; max-width:400px; text-align:center; margin-top:10px; }
 .top-info { display:flex; align-items:center; justify-content:flex-end; gap:6px; margin:10px; font-size:1em; }
-.top-info img.flag { width:22px; height:15px; border-radius:3px; }
+.top-info img.flag { width:24px; height:16px; border-radius:3px; }
 .status-circle { width:10px; height:10px; background:limegreen; border-radius:50%; }
 .circle-container { position:relative; width:130px; height:130px; margin:10px auto; }
 .circle { width:100%; height:100%; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:1.8em; border:3px solid #00ffff; position:relative; z-index:2; }
@@ -74,12 +74,12 @@ button:active { transform:scale(0.95); }
   </div>
   <input type="number" id="userId" placeholder="ادخل الايدي المكون من 10 أرقام">
 
-  <!-- اختيار الدولة -->
+  <!-- اختيار الدولة من الإنترنت -->
   <div class="country-select" id="countrySelect">
-    <img src="eg.png" data-country="eg" alt="مصر">
-    <img src="ma.png" data-country="ma" alt="المغرب">
-    <img src="dz.png" data-country="dz" alt="الجزائر">
-    <img src="sa.png" data-country="sa" alt="السعودية">
+    <img src="https://flagcdn.com/w40/eg.png" data-country="eg" alt="مصر">
+    <img src="https://flagcdn.com/w40/ma.png" data-country="ma" alt="المغرب">
+    <img src="https://flagcdn.com/w40/dz.png" data-country="dz" alt="الجزائر">
+    <img src="https://flagcdn.com/w40/sa.png" data-country="sa" alt="السعودية">
   </div>
 
   <div class="platforms">
